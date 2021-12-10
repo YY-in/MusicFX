@@ -24,11 +24,19 @@ public interface UserDao {
     public User queryUserByUsernameAndPassword(String username, String password);
 
     /**
+     * @Description: 检查email是否注册
+     * @Date: 22:16 2021/12/10
+     * @param email：
+     */
+    public User queryUserEmail(String email);
+    /**
      * 保存用户信息
      * @param user
      * @return 返回-1表示操作失败，其他是sql语句影响的行数
      */
     public int saveUser(User user);
+
+
 
 
     User queryUserByEmailAndPassword(String email, String password);

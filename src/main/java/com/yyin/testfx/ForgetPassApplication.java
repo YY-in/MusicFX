@@ -22,6 +22,7 @@ public class ForgetPassApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/ForgetPass.fxml"));
+
        if (primaryStage.getStyle()!= StageStyle.TRANSPARENT){
            primaryStage.initStyle(StageStyle.TRANSPARENT);
        }

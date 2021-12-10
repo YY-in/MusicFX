@@ -5,6 +5,7 @@ import com.yyin.testfx.models.User;
 import com.yyin.testfx.service.UserService;
 import com.yyin.testfx.service.UserServiceImpl;
 import com.yyin.testfx.utils.JdbcUtils;
+import com.yyin.testfx.utils.UIUtuils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +67,7 @@ public class LoginController implements Initializable {
 
         @FXML
         private TextField txtUsername;
+
         /**
          * @Description: 设定鼠标单击图片监视器，在点击图片之后关闭当前窗口
          * @Date: 21:38 2021/12/9
@@ -76,12 +78,14 @@ public class LoginController implements Initializable {
                 stage.close();
         }
 
+
         /**
          * @Description:设置鼠标单击SignIn按钮监视器，在点击SignIn后实现页面的跳转
          * @Date: 21:37 2021/12/9
          */
         @FXML
         void handleButtonSignIn(MouseEvent event) {
+
                 if (event.getSource() == btnSignin) {
                         //login here
                         if (logIn().equals("Success")) {
@@ -129,27 +133,27 @@ public class LoginController implements Initializable {
                 String status = "Error";
                 String logMes = txtUsername.getText();
                 String password = txtPassword.getText();
-                String emailPattern ="^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+                String emailPattern = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
                 if (logMes.isEmpty() || password.isEmpty()) {
-                        setLblError(Color.TOMATO, "登录信息尚未填写");
+                        UIUtuils.labelError(lblErrors,Color.TOMATO, "登录信息尚未填写");
 
                 } else {
-                        if (Pattern.matches(emailPattern,logMes)) {
-                                User loginUser = userService.loginByEmail(new User(null,null, password,logMes));
+                        if (Pattern.matches(emailPattern, logMes)) {
+                                User loginUser = userService.loginByEmail(new User(null, null, password, logMes));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息
-                                        setLblError(Color.TOMATO, "邮箱或密码错误！");
-                                } else{
-                                        setLblError(Color.GREEN, "登录成功，重定向中...");
+                                        UIUtuils.labelError(lblErrors,Color.TOMATO, "邮箱或密码错误！");
+                                } else {
+                                        UIUtuils.labelError(lblErrors,Color.GREEN, "登录成功，重定向中...");
                                         status = "Success";
                                 }
-                        }else{
-                                User loginUser = userService.loginByName(new User(null,logMes, password,null));
+                        } else {
+                                User loginUser = userService.loginByName(new User(null, logMes, password, null));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息
-                                        setLblError(Color.TOMATO, "用户名或密码错误！");
-                                } else{
-                                        setLblError(Color.GREEN, "登录成功，重定向中...");
+                                        UIUtuils.labelError(lblErrors,Color.TOMATO, "用户名或密码错误！");
+                                } else {
+                                        UIUtuils.labelError(lblErrors,Color.GREEN, "登录成功，重定向中...");
                                         status = "Success";
                                 }
                         }
@@ -160,28 +164,29 @@ public class LoginController implements Initializable {
 
         }
 
-        private void setLblError(Color color, String text) {
-                lblErrors.setTextFill(color);
-                lblErrors.setText(text);
-                System.out.println(text);
-        }
+
+
         /**
+         * @param mouseEvent 单击事件
          * @Description 实现forgetPass页面的跳转
          * @Date: 16:23 2021/12/10
-         * @param mouseEvent 单击事件
          */
         public void forgetPass(MouseEvent mouseEvent) {
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
                         //获取按钮所在的窗口
                         Stage primaryStage = (Stage) btnForgot.getScene().getWindow();
                         //当前窗口隐藏
 
                         //加载forgetPass窗口
-                        try{
+                        try {
                                 new ForgetPassApplication().start(primaryStage);
                         } catch (Exception e) {
                                 e.printStackTrace();
                         }
-                        });
+                });
+
         }
+
+
+
 }

@@ -34,4 +34,12 @@ public interface UserService {
      */
     public boolean existsUsername(String username);
 
+    /**
+     * @Description: 检查数据库中是否存在拥有这样邮箱的用户
+     * @Date: 22:21 2021/12/10
+     * @param email
+     * @return 存在 true ,不存在 false
+      */
+    public boolean existUserEmail(String email);
+
 }

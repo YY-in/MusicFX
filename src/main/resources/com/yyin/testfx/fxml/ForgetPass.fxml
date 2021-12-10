@@ -40,5 +40,10 @@
             <Image url="@../img/真实性核实.png" />
          </image>
       </ImageView>
+      <Label fx:id="labelError" layoutX="32.0" layoutY="161.0" prefHeight="22.0" prefWidth="259.0" textFill="#ff6354">
+         <font>
+            <Font name="Segoe UI" size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

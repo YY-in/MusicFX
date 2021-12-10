@@ -36,4 +36,13 @@ public class UserServiceImpl implements UserService{
         }
         return true;
     }
+
+    @Override
+    public boolean existUserEmail(String email) {
+        if(userDao.queryUserEmail(email)==null){
+            // 等于null,说明没有查询到,没查到邮箱不可用,需要注册
+            return false;
+        }
+        return true;
+    }
 }

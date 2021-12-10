@@ -19,4 +19,5 @@ module com.yyin.testfx {
     exports com.yyin.testfx.controllers;
     opens com.yyin.testfx.controllers to javafx.fxml;
     exports com.yyin.testfx.utils;
+    exports com.yyin.testfx.models;
 }

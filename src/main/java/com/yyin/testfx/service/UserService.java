@@ -4,7 +4,7 @@ import com.yyin.testfx.models.User;
 
 /**
  * @Author: YinZhihao
- * @Description:
+ * @Description: most implement of user service
  * @Date: Created in 22:31 2021/12/9
  */
 public interface UserService {
@@ -15,12 +15,18 @@ public interface UserService {
     public void registUser(User user);
 
     /**
-     * 登录
+     * @description 通过用户名验证登录
      * @param user
      * @return 如果返回null，说明登录失败，返回有值，是登录成功
      */
-    public User login(User user);
+    public User loginByName(User user);
 
+    /**
+     * @description: 通过邮箱验证登录
+     * @param user
+     * @return 如果返回null，说明登录失败，返回有值，是登录成功
+     */
+    public User loginByEmail(User user);
     /**
      * 检查 用户名是否可用
      * @param username

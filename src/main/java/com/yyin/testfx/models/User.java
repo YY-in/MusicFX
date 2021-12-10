@@ -2,7 +2,7 @@ package com.yyin.testfx.models;
 
 /**
  * @Author: YinZhihao
- * @Description:
+ * @Description: User model for service
  * @Date: Created in 21:33 2021/12/9
  */
 public class User {

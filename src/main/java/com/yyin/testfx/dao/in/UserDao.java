@@ -31,4 +31,5 @@ public interface UserDao {
     public int saveUser(User user);
 
 
+    User queryUserByEmailAndPassword(String email, String password);
 }

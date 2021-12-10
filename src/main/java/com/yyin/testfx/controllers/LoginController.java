@@ -29,9 +29,9 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 /**
- * @Author: YinZhihao
- * @Description: Login界面控制器
- * @Date: Created in 20:32 2021/12/9
+ * @Author YinZhihao
+ * @Description Login界面控制器
+ * @Date Created in 20:32 2021/12/9
  */
 public class LoginController implements Initializable {
         Connection conn;
@@ -174,7 +174,7 @@ public class LoginController implements Initializable {
                         //获取按钮所在的窗口
                         Stage primaryStage = (Stage) btnForgot.getScene().getWindow();
                         //当前窗口隐藏
-                        primaryStage.hide();
+
                         //加载forgetPass窗口
                         try{
                                 new ForgetPassApplication().start(primaryStage);

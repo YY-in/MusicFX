@@ -16,11 +16,13 @@ public class MainApplication extends Application {
 
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
         //we gonna remove the borderless thingie.
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setMaximized(false);
+        if (primaryStage.getStyle()!= StageStyle.TRANSPARENT) {
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+        }
+        primaryStage.setMaximized(false);
         //grab your root here
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -35,16 +37,16 @@ public class MainApplication extends Application {
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
             }
 
 
         });
 
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     /**

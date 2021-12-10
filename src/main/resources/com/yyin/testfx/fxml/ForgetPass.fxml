@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yyin.testfx.controllers.ForgetPassController">
    <children>
       <AnchorPane prefHeight="105.0" prefWidth="323.0" style="-fx-background-color: #0C39FF;">
          <children>
-            <ImageView fx:id="imgReturn" fitHeight="42.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgReturn" fitHeight="42.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#returnLogIn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/返回.png" />
                </image>

@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * @Author: YinZhihao
@@ -21,6 +22,9 @@ public class ForgetPassApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/ForgetPass.fxml"));
+       if (primaryStage.getStyle()!= StageStyle.TRANSPARENT){
+           primaryStage.initStyle(StageStyle.TRANSPARENT);
+       }
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

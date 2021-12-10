@@ -1,6 +1,7 @@
 package com.yyin.testfx.controllers;
 
 import com.yyin.testfx.MainApplication;
+import com.yyin.testfx.utils.EmailUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -32,7 +33,15 @@ public class ForgetPassController {
 
     @FXML
     void sendCode(MouseEvent event) {
-
+        String email =registeredEmail.getText();
+        if(EmailUtils.checkEmail(email)){
+        String code = EmailUtils.generateVerificationCode();
+        String sendHeader ="[Verification Code]Please verify your identification";
+        String sendMessage = "Verification Code:"+code;
+        EmailUtils.sendEmail(email,sendHeader,sendMessage);
+        }else{
+            //TODO
+        }
     }
 
     public void returnLogIn(MouseEvent mouseEvent) {

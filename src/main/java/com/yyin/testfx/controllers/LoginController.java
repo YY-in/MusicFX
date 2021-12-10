@@ -125,6 +125,7 @@ public class LoginController implements Initializable {
          * @return： Status String 登录状态
          */
         protected String logIn() {
+                btnSignup.setDefaultButton(true);
                 String status = "Error";
                 String logMes = txtUsername.getText();
                 String password = txtPassword.getText();

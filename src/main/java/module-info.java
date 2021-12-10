@@ -3,6 +3,7 @@ module com.yyin.testfx {
     requires javafx.fxml;
     requires javafx.web;
 
+    requires commons.email;
     requires jdk.management;
     requires jdk.naming.rmi;
     requires org.controlsfx.controls;

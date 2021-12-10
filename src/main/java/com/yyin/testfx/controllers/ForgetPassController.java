@@ -38,11 +38,11 @@ public class ForgetPassController {
     public void returnLogIn(MouseEvent mouseEvent) {
         Platform.runLater(()->{
             try{
-            //获取按钮所在的窗口
-            Stage primaryStage = (Stage) imgReturn.getScene().getWindow();
-            //当前窗口隐藏
-            primaryStage.hide();
-            //加载forgetPass窗口
+                //获取按钮所在的窗口
+                Stage primaryStage = (Stage) imgReturn.getScene().getWindow();
+                //当前窗口隐藏
+                primaryStage.hide();
+                //加载forgetPass窗口
                 new MainApplication().start(primaryStage);
             } catch (Exception e) {
                 e.printStackTrace();

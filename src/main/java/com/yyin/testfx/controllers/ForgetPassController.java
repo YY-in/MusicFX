@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.util.Optional;
 
@@ -59,7 +58,10 @@ public class ForgetPassController {
                 alert.setTitle("Without Relevant User");
                 alert.setHeaderText("This email haven't been registered");
                 alert.setContentText("Do you want to register for our platform");
-                alert.initStyle(StageStyle.TRANSPARENT);
+                ImageView image=new ImageView(MainApplication.class.getResource("img/数据库异常.png").toString());
+                image.setFitHeight(50);
+                image.setFitWidth(45);
+                alert.setGraphic(image);
                 Optional<ButtonType> result = alert.showAndWait();
                 if(result.get() == ButtonType.OK){
                     //TODO

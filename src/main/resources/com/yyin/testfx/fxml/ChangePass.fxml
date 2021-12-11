@@ -11,6 +11,16 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yyin.testfx.controllers.ChangePassController">
    <children>
+      <Pane layoutX="33.0" layoutY="316.0" prefHeight="61.0" prefWidth="259.0">
+         <children>
+            <ImageView fx:id="imgChange" disable="true" fitHeight="51.0" fitWidth="72.0" layoutX="23.0" layoutY="8.0" onMouseClicked="#backHome" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="labelChange" layoutX="95.0" layoutY="13.0" prefHeight="42.0" prefWidth="132.0">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <AnchorPane prefHeight="105.0" prefWidth="323.0" style="-fx-background-color: #0C39FF;">
          <children>
             <ImageView fx:id="imgReturn" fitHeight="42.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#returnLogIn" pickOnBounds="true" preserveRatio="true">
@@ -30,26 +40,21 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="96.0" fitWidth="163.0" layoutX="121.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../img/真实性核实.png" />
-         </image>
-      </ImageView>
       <Label fx:id="labelError" layoutX="32.0" layoutY="229.0" prefHeight="22.0" prefWidth="259.0" text="                6-18,numbers and Endlish contained" textFill="#0808dd">
          <font>
             <Font name="Segoe UI" size="10.0" />
          </font>
       </Label>
-      <Button fx:id="btnConfirm" layoutX="33.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#changePass" prefHeight="51.0" prefWidth="259.0" stylesheets="@../styling/fullpackstyling.css">
+      <Button fx:id="btnChange" layoutX="33.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#changePass" prefHeight="51.0" prefWidth="259.0" stylesheets="@../styling/fullpackstyling.css">
          <graphic>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imgConfirm" fitHeight="51.0" fitWidth="50.0" layoutX="14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/改变.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="labelConfirm" layoutX="53.0" layoutY="5.0" prefHeight="32.0" prefWidth="163.0" text=" Change Password">
+                  <Label layoutX="53.0" layoutY="5.0" prefHeight="32.0" prefWidth="163.0" text=" Change Password">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>

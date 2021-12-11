@@ -59,21 +59,18 @@ public class ForgetPassController extends Application {
     @FXML
     private TextField txtVerificationCode;
 
-    private static String confirmedEmail;
+    private static String confirmingEmail;
 
-    public static String getConfirmedEmail() {
-        return confirmedEmail;
-    }
 
     @FXML
     void sendCode(MouseEvent event) {
         code = EmailUtils.generateVerificationCode();
-        String email =registeredEmail.getText();
-        if(userService.checkEmail(email)){
-            if(userService.existUserEmail(email)) {
+        confirmingEmail =registeredEmail.getText();
+        if(userService.checkEmail(confirmingEmail)){
+            if(userService.existUserEmail(confirmingEmail)) {
                 String sendHeader = "[Verification Code]Please verify your identification";
                 String sendMessage = "Verification Code:" + code;
-                EmailUtils.sendEmail(email, sendHeader, sendMessage);
+                EmailUtils.sendEmail(confirmingEmail, sendHeader, sendMessage);
                 imgSend.setImage( new Image(MainApplication.class.getResource("img/已发送.png").toString())) ;
             }else{
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -120,7 +117,8 @@ public class ForgetPassController extends Application {
         }
         if (verificationCode.equals(code)){
             UIUtuils.labelError(labelError,Color.GREEN,"Identity Authentication Successful");
-
+            /* TODO transfer values */
+            EmailUtils.setEmail(confirmingEmail);
             Platform.runLater(() -> {
                 //获取按钮所在的窗口
                 Stage primaryStage = (Stage) imgReturn.getScene().getWindow();

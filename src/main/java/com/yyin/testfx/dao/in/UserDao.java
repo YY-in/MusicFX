@@ -44,5 +44,10 @@ public interface UserDao {
      */
     public User queryUserByEmailAndPassword(String email, String password);
 
+    /**
+     * @param email
+     * @param newPassword
+     * @return 如果返回-1,说明执行失败返回其他表示影响的行数
+     */
     public int updateUserPasswordByEmail(String email, String newPassword);
 }

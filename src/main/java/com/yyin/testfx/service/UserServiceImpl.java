@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean checkPassword(String password) {
-        String passwordPattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$";
+        String passwordPattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,18}$";
         return Pattern.matches(passwordPattern,password);
     }
 

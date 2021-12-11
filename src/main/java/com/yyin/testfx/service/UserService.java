@@ -56,5 +56,4 @@ public interface UserService {
      */
     public boolean checkEmail(String email);
 
-    public void setConfirmedEmail();
 }

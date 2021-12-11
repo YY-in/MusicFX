@@ -11,7 +11,17 @@ import java.util.Random;
  */
 public class EmailUtils {
 
-   private static final String BASIC = "123456789qwertyuiopasdfghjklzxcvbnm";
+   private static String email;
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        EmailUtils.email = email;
+    }
+
+    private static final String BASIC = "123456789qwertyuiopasdfghjklzxcvbnm";
    /**
     * @Description: 生成随机6位验证码
     * @Date: 20:35 2021/12/10

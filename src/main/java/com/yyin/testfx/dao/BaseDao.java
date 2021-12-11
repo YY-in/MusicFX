@@ -21,7 +21,6 @@ public abstract class BaseDao {
 
     /**
      * update() 方法用来执行：Insert\Update\Delete语句
-     *
      * @return 如果返回-1,说明执行失败返回其他表示影响的行数
      */
     public int update(String sql, Object... args) {

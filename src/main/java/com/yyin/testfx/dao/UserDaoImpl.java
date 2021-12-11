@@ -38,4 +38,11 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         String sql = "select `id`,`username`,`password`,`email` from t_user where email = ? and password = ?";
         return queryForOne(User.class, sql,email,password);
     }
+
+    @Override
+    public int updateUserPasswordByEmail(String email, String newPassword) {
+        String sql ="update t_user set `password` = ? where email= ?";
+        return update(sql,newPassword,email);
+    }
+
 }

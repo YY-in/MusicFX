@@ -21,4 +21,7 @@ module com.yyin.testfx {
     exports com.yyin.testfx.utils;
     exports com.yyin.testfx.models;
     exports com.yyin.testfx;
+    exports com.yyin.testfx.dao.in;
+    exports com.yyin.testfx.dao;
+
 }

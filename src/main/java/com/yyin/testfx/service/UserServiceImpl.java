@@ -1,8 +1,10 @@
 package com.yyin.testfx.service;
 
-import com.yyin.testfx.dao.in.UserDao;
 import com.yyin.testfx.dao.UserDaoImpl;
+import com.yyin.testfx.dao.in.UserDao;
 import com.yyin.testfx.models.User;
+
+import java.util.regex.Pattern;
 
 /**
  * @Author: YinZhihao
@@ -44,5 +46,17 @@ public class UserServiceImpl implements UserService{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean checkPassword(String password) {
+        String passwordPattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$";
+        return Pattern.matches(passwordPattern,password);
+    }
+
+   @Override
+    public  boolean checkEmail(String email){
+        String emailPattern ="^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+        return Pattern.matches(emailPattern,email);
     }
 }

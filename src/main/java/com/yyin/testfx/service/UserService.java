@@ -41,5 +41,20 @@ public interface UserService {
      * @return 存在 true ,不存在 false
       */
     public boolean existUserEmail(String email);
+    /**
+     * @Description: 检查密码是否合法
+     * @Date: 20:36 2021/12/10
+     * @param password：输入的密码
+     * @return： boolean
+     */
+    public  boolean checkPassword(String password);
+    /**
+     * @Description: 检查邮箱是否合法
+     * @Date: 20:36 2021/12/10
+     * @param email：输入的邮箱
+     * @return： boolean
+     */
+    public boolean checkEmail(String email);
 
+    public void setConfirmedEmail();
 }

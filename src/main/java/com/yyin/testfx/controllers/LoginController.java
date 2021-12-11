@@ -26,7 +26,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 /**
  * @Author YinZhihao
@@ -130,12 +129,12 @@ public class LoginController implements Initializable {
                 String status = "Error";
                 String logMes = txtUsername.getText();
                 String password = txtPassword.getText();
-                String emailPattern = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+
                 if (logMes.isEmpty() || password.isEmpty()) {
                         UIUtuils.labelError(lblErrors,Color.TOMATO, "Login Information Has Not Been Filled In");
 
                 } else {
-                        if (Pattern.matches(emailPattern, logMes)) {
+                        if (userService.checkEmail(logMes)) {
                                 User loginUser = userService.loginByEmail(new User(null, null, password, logMes));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息

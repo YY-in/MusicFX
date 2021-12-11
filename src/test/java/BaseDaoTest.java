@@ -1,4 +1,5 @@
-
+import com.yyin.testfx.dao.UserDaoImpl;
+import com.yyin.testfx.dao.in.UserDao;
 import com.yyin.testfx.utils.JdbcUtils;
 import org.junit.Test;
 
@@ -18,15 +19,10 @@ public class BaseDaoTest {
             JdbcUtils.close(connection);
         }
     }
-//    @Test
-//    public void testPersonQuery(){
-//        PersonDao personDao = new PersonDaoImpl();
-//
-//        if (personDao.queryByPersonName("尹","智豪")==null){
-//            System.out.println("用户名可用");
-//        }else{
-//            System.out.println("用户名已经存在");
-//        }
-//    }
 
+    @Test
+    public void testUpdatePassword(){
+        UserDao userDao = new UserDaoImpl();
+        userDao.updateUserPasswordByEmail("1398035515@qq.com","098765");
+    }
 }

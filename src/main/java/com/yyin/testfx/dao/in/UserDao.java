@@ -35,9 +35,14 @@ public interface UserDao {
      * @return 返回-1表示操作失败，其他是sql语句影响的行数
      */
     public int saveUser(User user);
+    /**
+     * @Author: InfinityPenguin
+     * @Description: 根据用户名和密码查询用户
+     * @Date: 15:33 2021/12/11
+     * @param email：
+     * @param password：
+     */
+    public User queryUserByEmailAndPassword(String email, String password);
 
-
-
-
-    User queryUserByEmailAndPassword(String email, String password);
+    public int updateUserPasswordByEmail(String email, String newPassword);
 }

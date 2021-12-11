@@ -3,7 +3,6 @@ package com.yyin.testfx.utils;
 import org.apache.commons.mail.HtmlEmail;
 
 import java.util.Random;
-import java.util.regex.Pattern;
 
 /**
  * @Author: YinZhihao
@@ -11,7 +10,7 @@ import java.util.regex.Pattern;
  * @Date: Created in 20:25 2021/12/10
  */
 public class EmailUtils {
-   private static String emailPattern ="^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+
    private static final String BASIC = "123456789qwertyuiopasdfghjklzxcvbnm";
    /**
     * @Description: 生成随机6位验证码
@@ -27,15 +26,7 @@ public class EmailUtils {
        }
        return new String(result);
    }
-   /**
-    * @Description: 检查邮箱是否合法
-    * @Date: 20:36 2021/12/10
-    * @param email：输入的邮箱
-    * @return： boolean
-    */
-   public static boolean checkEmail(String email){
-       return Pattern.matches(emailPattern,email);
-   }
+
 
     public static boolean sendEmail(String email,String sendHeader,String sendMessage){
         try {

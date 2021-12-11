@@ -14,6 +14,8 @@ module com.yyin.testfx {
     requires commons.dbutils;
     requires java.sql;
     requires druid;
+    requires kaptcha;
+    requires java.desktop;
 
     opens com.yyin.testfx to javafx.fxml;
     exports com.yyin.testfx.controllers;

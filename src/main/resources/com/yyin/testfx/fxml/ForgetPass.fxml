@@ -51,7 +51,7 @@
                <children>
                   <ImageView fx:id="imgConfirm" fitHeight="38.0" fitWidth="36.0" layoutX="26.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/验证2.png" />
+                        <Image url="@../img/验证.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="labelConfirm" layoutX="70.0" layoutY="5.0" prefHeight="32.0" prefWidth="163.0" text="Confirm Identity">

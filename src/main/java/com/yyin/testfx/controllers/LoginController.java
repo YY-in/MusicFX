@@ -28,9 +28,9 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 /**
- * @Author YinZhihao
- * @Description Login界面控制器
- * @Date Created in 20:32 2021/12/9
+ * @author YinZhihao
+ * @description Login界面控制器
+ * @date Created in 20:32 2021/12/9
  */
 public class LoginController implements Initializable {
         Connection conn;
@@ -43,10 +43,26 @@ public class LoginController implements Initializable {
         }
 
         @FXML
-        private Label btnForgot;
+        private ImageView AliPay;
 
         @FXML
-        private Button btnQQ;
+        private ImageView Apple;
+
+        @FXML
+        private ImageView Bilibili;
+
+        @FXML
+        private ImageView Google;
+
+        @FXML
+        private ImageView Steam;
+
+        @FXML
+        private ImageView WeChat;
+
+        @FXML
+        private Label btnForgot;
+
 
         @FXML
         private Button btnSignin;
@@ -76,6 +92,31 @@ public class LoginController implements Initializable {
                 stage.close();
         }
 
+        @FXML
+        void urlHandle(MouseEvent event) {
+                //TODO the three party certification
+                try {
+                        if (event.getSource() == WeChat) {
+                                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://wx.qq.com");
+                        }else if (event.getSource() == AliPay){
+                                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://auth.alipay.com/login/index.htm");
+                        }else if(event.getSource() == Apple){
+                                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://www.apple.com.cn");
+                        }else if(event.getSource()== Bilibili){
+                                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://www.bilibili.com");
+                        }else if (event.getSource()== Steam){
+                                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://store.steampowered.com");
+                        }else if(event.getSource() == Google){
+                                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://www.google.com");
+
+                        }
+
+                } catch(IOException e){
+                        e.printStackTrace();
+                }
+        }
+
+
 
         /**
          * @Description:设置鼠标单击SignIn按钮监视器，在点击SignIn后实现页面的跳转
@@ -93,7 +134,7 @@ public class LoginController implements Initializable {
                                         Stage stage = (Stage) node.getScene().getWindow();
                                         //stage.setMaximized(true);
                                         stage.close();
-                                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/OnBoard.fxml")));
+                                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/SignU.fxml")));
                                         stage.setScene(scene);
                                         stage.show();
 
@@ -167,6 +208,7 @@ public class LoginController implements Initializable {
          * @Description 实现forgetPass页面的跳转
          * @Date: 16:23 2021/12/10
          */
+        @FXML
         public void forgetPass(MouseEvent mouseEvent) {
                 Platform.runLater(() -> {
                         //获取按钮所在的窗口
@@ -183,6 +225,19 @@ public class LoginController implements Initializable {
 
         }
 
+        @FXML
+        public void signUp(MouseEvent mouseEvent) {
+                Platform.runLater(() -> {
+                        //获取按钮所在的窗口
+                        Stage primaryStage = (Stage) btnForgot.getScene().getWindow();
+                        //当前窗口隐藏
 
-
+                        //加载forgetPass窗口
+                        try {
+                                new SignUpController().start(primaryStage);
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+                });
+        }
 }

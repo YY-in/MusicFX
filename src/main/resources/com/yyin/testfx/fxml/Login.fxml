@@ -44,7 +44,7 @@
                         <Font name="Segoe UI" size="12.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnSignup" layoutX="4.0" layoutY="296.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="275.0" stylesheets="@../styling/fullpackstyling.css" text="Sign up" />
+                <Button fx:id="btnSignup" layoutX="4.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="34.0" prefWidth="275.0" stylesheets="@../styling/fullpackstyling.css" text="Sign up" />
                 <Separator layoutX="8.0" layoutY="190.0" prefHeight="7.0" prefWidth="275.0" />
                 <Label alignment="CENTER" layoutX="126.0" layoutY="179.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #fff;" text="Or" textFill="#5b5a5a">
                     <font>
@@ -64,34 +64,34 @@
                 </Label>
             <ButtonBar layoutX="-1.0" layoutY="218.0">
                <buttons>
-                  <HBox prefHeight="34.0" prefWidth="275.0" spacing="15.0">
+                  <HBox onMouseClicked="#urlHandle" prefHeight="34.0" prefWidth="275.0" spacing="15.0">
                      <children>
-                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="WeChat" fitHeight="35.0" fitWidth="37.0" onMouseClicked="#urlHandle" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/wechat.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="AliPay" fitHeight="30.0" fitWidth="36.0" onMouseDragged="#urlHandle" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/alipay.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="Bilibili" fitHeight="31.0" fitWidth="37.0" onMouseClicked="#urlHandle" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/bilibili.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="30.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="Steam" fitHeight="30.0" fitWidth="44.0" onMouseClicked="#urlHandle" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/steam.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="43.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="Apple" fitHeight="43.0" fitWidth="32.0" onMouseClicked="#urlHandle" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/apple.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="Google" fitHeight="31.0" fitWidth="37.0" onMouseClicked="#urlHandle" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/google.png" />
                            </image>
@@ -117,6 +117,5 @@
             <Image url="@../img/关闭.png" />
          </image>
       </ImageView>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
     </children>
 </AnchorPane>

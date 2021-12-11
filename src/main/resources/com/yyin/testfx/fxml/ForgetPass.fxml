@@ -18,12 +18,12 @@
                   <Image url="@../img/返回.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="91.0" layoutX="227.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="61.0" layoutX="239.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/开发.png" />
+                  <Image url="@../img/认证.png" />
                </image>
             </ImageView>
-            <Label layoutX="71.0" layoutY="35.0" prefHeight="42.0" prefWidth="163.0" text="Find Your Password" textFill="WHITE">
+            <Label layoutX="56.0" layoutY="35.0" prefHeight="42.0" prefWidth="177.0" text="Identity Authentication" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -31,7 +31,7 @@
          </children>
       </AnchorPane>
       <TextField fx:id="registeredEmail" layoutX="33.0" layoutY="134.0" prefHeight="38.0" prefWidth="259.0" promptText="registered email" />
-      <TextField fx:id="txtVerificationCode" layoutX="32.0" layoutY="191.0" prefHeight="38.0" prefWidth="177.0" promptText="verification code" />
+      <TextField fx:id="txtVerificationCode" layoutX="33.0" layoutY="191.0" prefHeight="38.0" prefWidth="177.0" promptText="verification code" />
       <Button fx:id="btnSendCode" layoutX="220.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#sendCode" prefHeight="38.0" prefWidth="72.0" stylesheets="@../styling/fullpackstyling.css">
          <graphic>
             <ImageView fx:id="imgSend" fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
@@ -40,11 +40,6 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fitHeight="96.0" fitWidth="163.0" layoutX="121.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../img/真实性核实.png" />
-         </image>
-      </ImageView>
       <Label fx:id="labelError" layoutX="32.0" layoutY="229.0" prefHeight="22.0" prefWidth="259.0" textFill="#ff6354">
          <font>
             <Font name="Segoe UI" size="10.0" />
@@ -56,10 +51,10 @@
                <children>
                   <ImageView fx:id="imgConfirm" fitHeight="38.0" fitWidth="36.0" layoutX="26.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/认证.png" />
+                        <Image url="@../img/验证2.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="labelConfirm" layoutX="78.0" layoutY="5.0" prefHeight="32.0" prefWidth="163.0" text="Confirm Identity">
+                  <Label fx:id="labelConfirm" layoutX="84.0" layoutY="5.0" prefHeight="32.0" prefWidth="163.0" text="Confirm Identity">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>

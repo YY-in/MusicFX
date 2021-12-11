@@ -19,7 +19,7 @@ public class EmailUtils {
     */
    public static String generateVerificationCode(){
        char[] basicArray = BASIC.toCharArray();
-       Random random = new Random(1024);
+       Random random = new Random();
        char[] result = new char[6];
        for (int i = 0; i < result.length; i++) {
            int index = random.nextInt(100) % (basicArray.length);

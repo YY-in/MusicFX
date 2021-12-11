@@ -27,7 +27,7 @@ import java.util.Optional;
 
 public class ForgetPassController {
     private UserService userService = new UserServiceImpl();
-    private String code = EmailUtils.generateVerificationCode();
+    private String code ;
     @FXML
     private Label labelConfirm;
 
@@ -57,6 +57,7 @@ public class ForgetPassController {
 
     @FXML
     void sendCode(MouseEvent event) {
+        code = EmailUtils.generateVerificationCode();
         String email =registeredEmail.getText();
         if(EmailUtils.checkEmail(email)){
             if(userService.existUserEmail(email)) {
@@ -111,6 +112,8 @@ public class ForgetPassController {
             UIUtuils.labelError(labelError,Color.GREEN,"Identity Authentication Successful");
         }else {
             UIUtuils.labelError(labelError,Color.TOMATO,"Wrong Verification Code,Check Or Send Again ");
+            imgConfirm.setImage(new Image(MainApplication.class.getResource("img/错误.png").toString()));
+            imgSend.setImage(new Image(MainApplication.class.getResource("img/发送验证码.png").toString()));
         }
     }
 }

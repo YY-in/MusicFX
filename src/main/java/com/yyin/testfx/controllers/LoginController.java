@@ -1,6 +1,5 @@
 package com.yyin.testfx.controllers;
 
-import com.yyin.testfx.ForgetPassApplication;
 import com.yyin.testfx.models.User;
 import com.yyin.testfx.service.UserService;
 import com.yyin.testfx.service.UserServiceImpl;
@@ -177,7 +176,7 @@ public class LoginController implements Initializable {
 
                         //加载forgetPass窗口
                         try {
-                                new ForgetPassApplication().start(primaryStage);
+                                new ForgetPassController().start(primaryStage);
                         } catch (Exception e) {
                                 e.printStackTrace();
                         }

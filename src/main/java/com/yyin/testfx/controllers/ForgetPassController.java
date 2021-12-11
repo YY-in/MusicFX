@@ -5,8 +5,12 @@ import com.yyin.testfx.service.UserService;
 import com.yyin.testfx.service.UserServiceImpl;
 import com.yyin.testfx.utils.EmailUtils;
 import com.yyin.testfx.utils.UIUtuils;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,7 +29,7 @@ import java.util.Optional;
 
 
 
-public class ForgetPassController {
+public class ForgetPassController extends Application {
     private UserService userService = new UserServiceImpl();
     private String code ;
     @FXML
@@ -110,10 +114,31 @@ public class ForgetPassController {
         }
         if (verificationCode.equals(code)){
             UIUtuils.labelError(labelError,Color.GREEN,"Identity Authentication Successful");
+            Platform.runLater(() -> {
+                //获取按钮所在的窗口
+                Stage primaryStage = (Stage) imgReturn.getScene().getWindow();
+
+                //加载forgetPass窗口
+                try {
+                    new ChangePassController().start(primaryStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         }else {
             UIUtuils.labelError(labelError,Color.TOMATO,"Wrong Verification Code,Check Or Send Again ");
             imgConfirm.setImage(new Image(MainApplication.class.getResource("img/错误.png").toString()));
             imgSend.setImage(new Image(MainApplication.class.getResource("img/发送验证码.png").toString()));
         }
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+            Parent root = FXMLLoader.load(MainApplication.class.getResource("fxml/ForgetPass.fxml"));
+            UIUtuils.transparentStyle(root,stage);
+            stage.setScene(new Scene(root));
+            stage.show();
+
     }
 }

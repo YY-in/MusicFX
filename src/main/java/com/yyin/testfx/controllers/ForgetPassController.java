@@ -7,12 +7,11 @@ import com.yyin.testfx.utils.EmailUtils;
 import com.yyin.testfx.utils.UIUtuils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -28,6 +27,18 @@ import java.util.Optional;
 
 public class ForgetPassController {
     private UserService userService = new UserServiceImpl();
+    private String code = EmailUtils.generateVerificationCode();
+    @FXML
+    private Label labelConfirm;
+
+    @FXML
+    private ImageView imgConfirm;
+
+    @FXML
+    private Pane btnConfirm;
+
+    @FXML
+    private Button btnSendCode;
 
     @FXML
     private ImageView imgReturn;
@@ -42,17 +53,17 @@ public class ForgetPassController {
     private TextField registeredEmail;
 
     @FXML
-    private TextField verificationCode;
+    private TextField txtVerificationCode;
 
     @FXML
     void sendCode(MouseEvent event) {
         String email =registeredEmail.getText();
         if(EmailUtils.checkEmail(email)){
             if(userService.existUserEmail(email)) {
-                String code = EmailUtils.generateVerificationCode();
                 String sendHeader = "[Verification Code]Please verify your identification";
                 String sendMessage = "Verification Code:" + code;
                 EmailUtils.sendEmail(email, sendHeader, sendMessage);
+                imgSend.setImage( new Image(MainApplication.class.getResource("img/已发送.png").toString())) ;
             }else{
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Without Relevant User");
@@ -71,10 +82,11 @@ public class ForgetPassController {
 
             }
         }else{
-            UIUtuils.labelError(labelError, Color.TOMATO,"邮箱格式错误,请检查");
+            UIUtuils.labelError(labelError, Color.TOMATO,"The Mailbox Format Is Incorrect, Please Check");
         }
     }
 
+    @FXML
     public void returnLogIn(MouseEvent mouseEvent) {
         Platform.runLater(()->{
             try{
@@ -88,5 +100,17 @@ public class ForgetPassController {
                 e.printStackTrace();
             }
         });
+    }
+    @FXML
+    void confirmIdentity(MouseEvent event) {
+        String verificationCode = txtVerificationCode.getText();
+        if (verificationCode.isEmpty()){
+            UIUtuils.labelError(labelError,Color.TOMATO,"The Verification Code Is Not Entered");
+        }
+        if (verificationCode.equals(code)){
+            UIUtuils.labelError(labelError,Color.GREEN,"Identity Authentication Successful");
+        }else {
+            UIUtuils.labelError(labelError,Color.TOMATO,"Wrong Verification Code,Check Or Send Again ");
+        }
     }
 }

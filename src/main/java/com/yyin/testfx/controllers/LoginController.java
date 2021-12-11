@@ -115,11 +115,9 @@ public class LoginController implements Initializable {
         public void initialize(URL url, ResourceBundle resourceBundle) {
                 // TODO
                 if (conn == null) {
-                        lblErrors.setTextFill(Color.TOMATO);
-                        lblErrors.setText("服务器异常");
+                        UIUtuils.labelError(lblErrors,Color.TOMATO,"Server Exception");
                 } else {
-                        lblErrors.setTextFill(Color.GREEN);
-                        lblErrors.setText("服务器连接");
+                        UIUtuils.labelError(lblErrors,Color.GREEN,"Server Connected");
                 }
         }
 
@@ -135,25 +133,25 @@ public class LoginController implements Initializable {
                 String password = txtPassword.getText();
                 String emailPattern = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
                 if (logMes.isEmpty() || password.isEmpty()) {
-                        UIUtuils.labelError(lblErrors,Color.TOMATO, "登录信息尚未填写");
+                        UIUtuils.labelError(lblErrors,Color.TOMATO, "Login Information Has Not Been Filled In");
 
                 } else {
                         if (Pattern.matches(emailPattern, logMes)) {
                                 User loginUser = userService.loginByEmail(new User(null, null, password, logMes));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息
-                                        UIUtuils.labelError(lblErrors,Color.TOMATO, "邮箱或密码错误！");
+                                        UIUtuils.labelError(lblErrors,Color.TOMATO, "Email Or Password Error!");
                                 } else {
-                                        UIUtuils.labelError(lblErrors,Color.GREEN, "登录成功，重定向中...");
+                                        UIUtuils.labelError(lblErrors,Color.GREEN, "Login Successful,Redirecting...");
                                         status = "Success";
                                 }
                         } else {
                                 User loginUser = userService.loginByName(new User(null, logMes, password, null));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息
-                                        UIUtuils.labelError(lblErrors,Color.TOMATO, "用户名或密码错误！");
+                                        UIUtuils.labelError(lblErrors,Color.TOMATO, "Wrong Username Or Password");
                                 } else {
-                                        UIUtuils.labelError(lblErrors,Color.GREEN, "登录成功，重定向中...");
+                                        UIUtuils.labelError(lblErrors,Color.GREEN, "Login Successful, redirecting...");
                                         status = "Success";
                                 }
                         }

@@ -37,7 +37,7 @@ public class BaseDaoTest {
     @Test
     public void testLoadImageFromDB(){
         UserDao userDao =new UserDaoImpl();
-        System.out.println(MainApplication.class.getResource("/").toString());
-        ImageUtils.binaryToImg("C:\\Users\\13980\\IdeaProjects\\testFX\\src\\main\\resources\\com\\yyin\\testfx\\img\\test1.png",userDao.queryUserImgByUserName("yiin").getUser_img());
+        System.out.println();
+        ImageUtils.binaryToImg(MainApplication.class.getResource("img/").toString()+"Al.png",userDao.queryUserImgByUserName("yiin").getUser_img());
     }
 }

@@ -17,6 +17,7 @@ import java.util.Properties;
  */
 public class KaptchaUtils {
 
+
     public static DefaultKaptcha setKaptchaStyle() {
         DefaultKaptcha dk = new DefaultKaptcha();
         Properties properties = new Properties();
@@ -44,12 +45,18 @@ public class KaptchaUtils {
         return dk;
     }
 
-    public static Image generateKaptchaImage(){
+    public static Image generateKaptchaImage(String randomCode){
         DefaultKaptcha defaultKaptcha=setKaptchaStyle();
-        String createText = defaultKaptcha.createText();
-        BufferedImage kaptchaImage = defaultKaptcha.createImage(createText);
+        BufferedImage kaptchaImage = defaultKaptcha.createImage(randomCode);
         return convertToFxImage(kaptchaImage);
-        }
+    }
+
+    public static String generateRandomCode(){
+        DefaultKaptcha defaultKaptcha=setKaptchaStyle();
+        return defaultKaptcha.createText();
+    }
+
+
 
     private static Image convertToFxImage(BufferedImage image) {
         WritableImage wr = null;
@@ -65,5 +72,6 @@ public class KaptchaUtils {
 
         return new ImageView(wr).getImage();
     }
+
 }
 

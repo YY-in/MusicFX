@@ -8,11 +8,6 @@ import com.yyin.testfx.models.User;
  * @Date: Created in 22:31 2021/12/9
  */
 public interface UserService {
-    /**
-     * 注册用户
-     * @param user
-     */
-    public void registUser(User user);
 
     /**
      * @description 通过用户名验证登录
@@ -56,4 +51,14 @@ public interface UserService {
      */
     public boolean checkEmail(String email);
 
+    /**
+     * 保存用户登录信息
+     * @date: 21:41 2021/12/12
+     * @param userName 用户名
+     * @param email 邮箱
+     * @param password 密码
+     * @param img_path 图片本地地址
+     * @return 返回-1表示操作失败，其他是sql语句影响的行数
+     */
+    int saveRegisterInformation(String userName, String email, String password, String img_path);
 }

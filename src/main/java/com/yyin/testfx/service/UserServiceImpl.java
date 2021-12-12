@@ -15,11 +15,6 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao = new UserDaoImpl();
 
     @Override
-    public void registUser(User user) {
-        userDao.saveUser(user);
-    }
-
-    @Override
     public User loginByName(User user) {
         return userDao.queryUserByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
@@ -58,5 +53,11 @@ public class UserServiceImpl implements UserService{
     public  boolean checkEmail(String email){
         String emailPattern ="^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
         return Pattern.matches(emailPattern,email);
+    }
+
+    @Override
+    public int saveRegisterInformation(String userName, String email, String password, String img_path) {
+        User user = new User(null,userName,email,password,img_path);
+        return userDao.saveUser(user);
     }
 }

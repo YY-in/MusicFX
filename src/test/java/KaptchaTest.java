@@ -9,6 +9,7 @@ import org.junit.Test;
 public class KaptchaTest {
     @Test
     public void testeGenerateImage(){
-        KaptchaUtils.generateKaptchaImage();
+
+        KaptchaUtils.generateKaptchaImage(KaptchaUtils.generateRandomCode());
     }
 }

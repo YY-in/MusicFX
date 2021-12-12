@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -48,42 +51,90 @@
             <Image url="@../img/关闭.png" />
          </image>
       </ImageView>
-      <HBox layoutX="402.0" layoutY="173.0" prefHeight="40.0" prefWidth="240.0" spacing="18.0">
+      <VBox layoutX="394.0" layoutY="40.0" spacing="20.0">
          <children>
-            <TextField prefHeight="44.0" prefWidth="120.0" promptText="KaptchaCode">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></TextField>
-            <ImageView fx:id="imgKaptcha" fitHeight="44.0" fitWidth="113.0" onMouseClicked="#changeImgKaptcha" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/验证码.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-      <VBox layoutX="402.0" layoutY="54.0" spacing="20.0">
-         <children>
-            <TextField prefHeight="40.0" prefWidth="240.0" promptText="UserName">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></TextField>
-            <TextField prefHeight="40.0" prefWidth="240.0" promptText="Email">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></TextField>
+            <VBox spacing="20.0">
+               <children>
+                  <TextField prefHeight="40.0" prefWidth="240.0" promptText="UserName">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField prefHeight="40.0" prefWidth="240.0" promptText="Email">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox spacing="20.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="240.0" spacing="18.0">
+                     <children>
+                        <TextField prefHeight="44.0" prefWidth="120.0" promptText="KaptchaCode">
+                           <font>
+                              <Font name="Comic Sans MS" size="12.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fx:id="imgKaptcha" fitHeight="44.0" fitWidth="113.0" onMouseClicked="#changeImgKaptcha" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/验证码.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="240.0" stylesheets="@../styling/fullpackstyling.css" text="Validation Email">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField prefHeight="40.0" prefWidth="240.0" promptText="EmailCode">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefWidth="240.0" spacing="20.0">
+               <children>
+                  <PasswordField prefHeight="40.0" prefWidth="240.0" promptText="Password">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField prefHeight="40.0" prefWidth="240.0" promptText="PasswordAgain" />
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <PasswordField layoutX="404.0" layoutY="232.0" prefHeight="40.0" prefWidth="240.0" />
-      <PasswordField layoutX="402.0" layoutY="286.0" prefHeight="40.0" prefWidth="240.0" />
       <ImageView fx:id="imgReturn" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleReturn" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../img/返回.png" />
          </image>
       </ImageView>
-      <Circle fx:id="imgId" fill="WHITE" layoutX="747.0" layoutY="141.0" radius="87.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="btnEditImage" layoutX="766.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#editImage" prefHeight="30.0" prefWidth="55.0" stylesheets="@../styling/fullpackstyling.css" text="edit">
+      <VBox layoutX="644.0" layoutY="40.0" spacing="50.0">
+         <children>
+          <Circle fx:id="imgId" fill="White" radius="95.0" stroke="BLACK" strokeType="INSIDE" />
+            <HBox spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@../styling/fullpackstyling.css" text="Submit">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@../styling/fullpackstyling.css" text="Cancel">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="btnEditImage" layoutX="753.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#editImage" prefHeight="30.0" prefWidth="55.0" stylesheets="@../styling/fullpackstyling.css" text="edit">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
-         </font></Button>
+         </font>
+      </Button>
    </children>
 </AnchorPane>

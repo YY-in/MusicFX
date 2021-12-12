@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean existsUsername(String username) {
 
-        if (userDao.queryUserByUsername(username) == null) {
+        if (userDao.queryUserByUserName(username) == null) {
             // 等于null,说明没查到，没查到表示可用
             return false;
         }

@@ -1,5 +1,8 @@
+import com.yyin.testfx.MainApplication;
 import com.yyin.testfx.dao.UserDaoImpl;
 import com.yyin.testfx.dao.in.UserDao;
+import com.yyin.testfx.models.User;
+import com.yyin.testfx.utils.ImageUtils;
 import com.yyin.testfx.utils.JdbcUtils;
 import org.junit.Test;
 
@@ -24,5 +27,17 @@ public class BaseDaoTest {
     public void testUpdatePassword(){
         UserDao userDao = new UserDaoImpl();
         userDao.updateUserPasswordByEmail("1398035515@qq.com","098765");
+    }
+    @Test
+    public void testSaveUser(){
+        User yiin = new User(null,"yiin123","yyin12345678","12345678@qq.com", "C:\\Users\\13980\\IdeaProjects\\testFX\\src\\main\\resources\\com\\yyin\\testfx\\img\\alipay.png");
+        UserDao userDao = new UserDaoImpl();
+        userDao.saveUser(yiin);
+    }
+    @Test
+    public void testLoadImageFromDB(){
+        UserDao userDao =new UserDaoImpl();
+        System.out.println(MainApplication.class.getResource("/").toString());
+        ImageUtils.binaryToImg("C:\\Users\\13980\\IdeaProjects\\testFX\\src\\main\\resources\\com\\yyin\\testfx\\img\\test1.png",userDao.queryUserImgByUserName("yiin").getUser_img());
     }
 }

@@ -1,5 +1,7 @@
 package com.yyin.testfx.models;
 
+import com.yyin.testfx.utils.ImageUtils;
+
 /**
  * @Author: YinZhihao
  * @Description: User model for service
@@ -11,6 +13,15 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private byte[] user_img;
+
+    public byte[] getUser_img() {
+        return user_img;
+    }
+
+    public void setUser_img(byte[] user_img) {
+        this.user_img = user_img;
+    }
 
     public Integer getId() {
         return id;
@@ -57,10 +68,11 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email) {
+    public User(Integer id, String username, String password, String email,String path) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.user_img = ImageUtils.pathToBinaryStream(path);
     }
 }

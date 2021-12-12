@@ -176,7 +176,7 @@ public class LoginController implements Initializable {
 
                 } else {
                         if (userService.checkEmail(logMes)) {
-                                User loginUser = userService.loginByEmail(new User(null, null, password, logMes));
+                                User loginUser = userService.loginByEmail(new User(null, null, password, logMes,null));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息
                                         UIUtuils.labelError(lblErrors,Color.TOMATO, "Email Or Password Error!");
@@ -185,7 +185,7 @@ public class LoginController implements Initializable {
                                         status = "Success";
                                 }
                         } else {
-                                User loginUser = userService.loginByName(new User(null, logMes, password, null));
+                                User loginUser = userService.loginByName(new User(null, logMes, password, null,null));
                                 if (loginUser == null) {
                                         // 把错误信息，和回显的表单项信息
                                         UIUtuils.labelError(lblErrors,Color.TOMATO, "Wrong Username Or Password");

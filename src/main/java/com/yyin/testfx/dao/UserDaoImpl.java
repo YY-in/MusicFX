@@ -10,27 +10,27 @@ import com.yyin.testfx.models.User;
  */
 public class UserDaoImpl extends BaseDao implements UserDao {
     @Override
-    public User queryUserByUsername(String username) {
-        String sql = "select `id`,`username`,`password`,`email` from t_user where username = ?";
-        return queryForOne(User.class, sql, username);
+    public User queryUserImgByUserName(String userName) {
+        String sql = "select `user_img` from t_user where username = ?";
+        return queryForOne(User.class,sql,userName);
     }
 
     @Override
-    public User queryUserByUsernameAndPassword(String username, String password) {
+    public User queryUserByUserName(String userName) {
+        String sql = "select `id`,`username`,`password`,`email`,`user_img` from t_user where username = ?";
+        return queryForOne(User.class, sql, userName);
+    }
+
+    @Override
+    public User queryUserByUsernameAndPassword(String userName, String password) {
         String sql = "select `id`,`username`,`password`,`email` from t_user where username = ? and password = ?";
-        return queryForOne(User.class, sql, username,password);
+        return queryForOne(User.class, sql, userName,password);
     }
 
     @Override
     public User queryUserEmail(String email) {
         String sql = "select `id`,`username`,`password`,`email` from t_user where email = ?";
         return queryForOne(User.class,sql,email);
-    }
-
-    @Override
-    public int saveUser(User user) {
-        String sql = "insert into t_user(`username`,`password`,`email`) values(?,?,?)";
-        return update(sql, user.getUsername(),user.getPassword(),user.getEmail());
     }
 
     @Override
@@ -44,5 +44,9 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         String sql ="update t_user set `password` = ? where email= ?";
         return update(sql,newPassword,email);
     }
-
+    @Override
+    public int saveUser(User user) {
+        String sql = "insert into t_user(`username`,`password`,`email`,`user_img`) values(?,?,?,?)";
+        return update(sql, user.getUsername(),user.getPassword(),user.getEmail(),user.getUser_img());
+    }
 }

@@ -30,7 +30,7 @@ public class BaseDaoTest {
     }
     @Test
     public void testSaveUser(){
-        User yiin = new User(null,"yiin123","yyin12345678","12345678@qq.com", "C:\\Users\\13980\\IdeaProjects\\testFX\\src\\main\\resources\\com\\yyin\\testfx\\img\\alipay.png");
+        User yiin = new User(null,"yiin123","yyin12345678","12345678@qq.com", "C:\\Users\\13980\\IdeaProjects\\testFX\\src\\main\\resources\\com\\yyin\\testfx\\img\\Alipay.png");
         UserDao userDao = new UserDaoImpl();
         userDao.saveUser(yiin);
     }
@@ -38,6 +38,6 @@ public class BaseDaoTest {
     public void testLoadImageFromDB(){
         UserDao userDao =new UserDaoImpl();
         System.out.println();
-        ImageUtils.binaryToImg(MainApplication.class.getResource("img/").toString()+"Al.png",userDao.queryUserImgByUserName("yiin").getUser_img());
+        ImageUtils.binaryToImg(MainApplication.class.getResource("img/").getPath()+"atest.png",userDao.queryUserImgByUserName("yiin123").getUser_img());
     }
 }

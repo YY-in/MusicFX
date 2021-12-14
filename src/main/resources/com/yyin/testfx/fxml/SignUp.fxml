@@ -81,7 +81,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Button fx:id="btnVa" mnemonicParsing="false" onMouseClicked="#emailValidation" prefHeight="40.0" prefWidth="240.0" stylesheets="@../styling/fullpackstyling.css" text=" Email Validation">
+                  <Button fx:id="btnVa" mnemonicParsing="false" onMouseClicked="#emailValidation" prefHeight="40.0" prefWidth="240.0" stylesheets="@../css/fullpackstyling.css" text=" Email Validation">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
@@ -117,19 +117,19 @@
       </ImageView>
       <HBox layoutX="641.0" layoutY="329.0" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#submit" prefHeight="40.0" prefWidth="93.0" stylesheets="@../styling/fullpackstyling.css" text="Submit">
+            <Button mnemonicParsing="false" onMouseClicked="#submit" prefHeight="40.0" prefWidth="93.0" stylesheets="@../css/fullpackstyling.css" text="Submit">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="90.0" stylesheets="@../styling/fullpackstyling.css" text="Cancel">
+            <Button mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="90.0" stylesheets="@../css/fullpackstyling.css" text="Cancel">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <Button fx:id="btnEditImage" layoutX="787.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#editImage" prefHeight="30.0" prefWidth="55.0" stylesheets="@../styling/fullpackstyling.css" text="edit">
+      <Button fx:id="btnEditImage" layoutX="787.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#editImage" prefHeight="30.0" prefWidth="55.0" stylesheets="@../css/fullpackstyling.css" text="edit">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
          </font>

@@ -1,0 +1,38 @@
+.text-field
+{
+    -fx-background-color: #FFFFFF;
+}
+.text-input, .text-input:focused
+{
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+}
+.label
+{
+    -fx-font-family: "Microsoft YaHei","SimSun";
+}
+.labTime
+{
+    -fx-text-fill: #529e4e;
+}
+.labResend
+{
+    -fx-background-color: #529e4e;
+    -fx-text-fill: #ebecee;
+    -fx-background-radius: 1em;
+}
+.progress-indicator
+{
+    -fx-pref-height: 18px;
+    -fx-max-height: 18px;
+    -fx-pref-width: 18px;
+    -fx-max-width: 18px;
+    -fx-progress-color: gray;
+}
+.button
+{
+    -fx-font-family: "Microsoft YaHei","SimSun";
+    -fx-font-size: 16px;
+    -fx-background-color: #BC2F2D;
+    -fx-text-fill: WHITE;
+    -fx-background-insets: 0;
+}

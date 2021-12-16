@@ -16,6 +16,8 @@ module com.yyin.testfx {
     requires druid;
     requires kaptcha;
     requires java.desktop;
+    requires jna.platform;
+    requires jna;
 
     opens com.yyin.testfx to javafx.fxml;
     exports com.yyin.testfx.controllers;
@@ -25,5 +27,5 @@ module com.yyin.testfx {
     exports com.yyin.testfx;
     exports com.yyin.testfx.dao.in;
     exports com.yyin.testfx.dao;
-
+    exports controller.main;
 }

@@ -19,6 +19,9 @@ public class ImageUtils {
      * @date: 15:00 2021/12/12
      */
     public static byte[] pathToBinaryStream(String path) {
+        if(path==null){
+            return null;
+        }
         File file = new File(path);
         if (!file.exists()) {
             return null;

@@ -1,5 +1,6 @@
 package com.yyin.testfx.controllers;
 
+import com.yyin.testfx.application.MusicMainApplication;
 import com.yyin.testfx.models.User;
 import com.yyin.testfx.service.UserService;
 import com.yyin.testfx.service.UserServiceImpl;
@@ -7,10 +8,7 @@ import com.yyin.testfx.utils.JdbcUtils;
 import com.yyin.testfx.utils.UIUtuils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -128,19 +126,27 @@ public class LoginController implements Initializable {
                 if (event.getSource() == btnSignin) {
                         //login here
                         if (logIn().equals("Success")) {
-                                try {
-                                        //add you loading or delays - ;-)
-                                        Node node = (Node) event.getSource();
-                                        Stage stage = (Stage) node.getScene().getWindow();
-                                        //stage.setMaximized(true);
-                                        stage.close();
-                                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/SignU.fxml")));
-                                        stage.setScene(scene);
-                                        stage.show();
+                                //TODO
+                                Platform.runLater(() -> {
+                                        //获取按钮所在的窗口
+                                        Stage primaryStage = (Stage) btnForgot.getScene().getWindow();
+                                        //当前窗口隐藏
 
-                                } catch (IOException ex) {
-                                        System.err.println(ex.getMessage());
-                                }
+                                        //加载forgetPass窗口
+                                        try {
+                                                new MusicMainApplication().start(primaryStage);
+                                        } catch (Exception e) {
+                                                e.printStackTrace();
+                                        }
+                                });
+                                //add you loading or delays - ;-)
+//                                        Node node = (Node) event.getSource();
+//                                        Stage stage = (Stage) node.getScene().getWindow();
+//                                        //stage.setMaximized(true);
+//                                        stage.close();
+//                                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/SignU.fxml")));
+//                                        stage.setScene(scene);
+//                                        stage.show();
 
                         }
                 }
@@ -183,6 +189,8 @@ public class LoginController implements Initializable {
                                 } else {
                                         UIUtuils.labelError(lblErrors,Color.GREEN, "Login Successful,Redirecting...");
                                         status = "Success";
+
+
                                 }
                         } else {
                                 User loginUser = userService.loginByName(new User(null, logMes, password, null,null));

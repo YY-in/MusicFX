@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int saveRegisterInformation(String userName, String email, String password, String img_path) {
-        User user = new User(null,userName,email,password,img_path);
+        User user = new User(null,userName,password,email,img_path);
         return userDao.saveUser(user);
     }
 }

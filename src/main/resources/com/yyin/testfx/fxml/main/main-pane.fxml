@@ -11,7 +11,7 @@
     <children>
         <BorderPane fx:id="borderPane" prefHeight="560.0" prefWidth="870.0">
             <top>
-                <!--        <fx:include source="main-top.fxml"></fx:include>-->
+                        <fx:include source="main-top.fxml"></fx:include>
             </top>
 
             <center>

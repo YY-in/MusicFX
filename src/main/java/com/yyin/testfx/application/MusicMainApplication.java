@@ -1,15 +1,18 @@
 package com.yyin.testfx.application;
 
 import com.yyin.testfx.MainApplication;
+import com.yyin.testfx.controllers.content.LyricContentController;
+import com.yyin.testfx.utils.UIUtuils;
 import com.yyin.testfx.utils.WindowUtils;
+import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * @Author: YinZhihao
@@ -27,13 +30,36 @@ public class MusicMainApplication extends Application{
         primaryStage.setTitle("音乐"); // 设置标题
         primaryStage.getIcons().add(new Image(MainApplication.class.getResource("img/NeteaseMusicPlayerIcon.png").toString())); //设置图标
         primaryStage.setScene(scene);
-        if (WindowUtils.isWindowsPlatform()){   //如果是Windows平台
-            primaryStage.initStyle(StageStyle.TRANSPARENT);   //去掉Windows自带的标题栏
-            WindowUtils.addResizable(primaryStage,860,570);  //为primaryStage添加自由缩放
-            WindowUtils.addWindowsStyle(primaryStage);  //为primaryStage添加一些GUI的修复代码
-        }else { //minWidth="870.0" minHeight="580.0"
-//            primaryStage.setMinWidth(870.0);
-//            primaryStage.setMinHeight(620);
-        }
+        UIUtuils.transparentStyle(root,primaryStage);
+        addMinMaxsizeBehavior(primaryStage);
+    }
+
+    /**
+     * 修补在最大化状态下，最小化窗体之后单击任务栏图标恢复时，窗体的高度和宽度是全屏的问题。修复后，宽度和高度是为屏幕可视化的宽度和高度
+     */
+    private void addMinMaxsizeBehavior(Stage primaryStage) {
+        primaryStage.iconifiedProperty().addListener((observable, oldValue, newValue) -> {
+            //确保Windows平台下,窗体在最大化状态下最小化后，单击任务栏图标显示时占据的屏幕大小是可视化的全屏
+            if (primaryStage.isMaximized() && WindowUtils.isWindowsPlatform()) {
+                primaryStage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+                primaryStage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+            }
+            LyricContentController lyricContentController = new LyricContentController();
+            if (observable.getValue()){
+                System.out.println("cancel");
+                /**#####RotateTransition######*/
+                if (lyricContentController.isShow() && lyricContentController.getRotateTransition().getStatus() == Animation.Status.RUNNING){
+                    lyricContentController.getRotateTransition().pause();
+                }
+            }else {
+//                /**#####RotateTransition######*/
+//                if (lyricContentController.isShow()
+//                        //TODO
+//                        && lyricContentController.getRotateTransition().getStatus() == Animation.Status.PAUSED
+//                        && applicationContext.getBean(MyMediaPlayer.class).getPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+//                    lyricContentController.getRotateTransition().play();
+//                }
+            }
+        });
     }
 }

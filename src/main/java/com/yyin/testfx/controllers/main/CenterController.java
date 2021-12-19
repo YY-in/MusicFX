@@ -1,4 +1,4 @@
-package controller.main;
+package com.yyin.testfx.controllers.main;
 
 /**
  * @Author: YinZhihao

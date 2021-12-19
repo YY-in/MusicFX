@@ -9,7 +9,7 @@
 <StackPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
            fx:id="stackPane"
-            fx:controller="controller.main.CenterController">
+            fx:controller="com.yyin.testfx.controllers.main.CenterController">
 
     <BorderPane fx:id="borderPane" style="-fx-background-color: #FAFAFC;">
         <left>

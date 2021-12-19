@@ -2,6 +2,7 @@ package com.yyin.testfx.application;
 
 import com.yyin.testfx.MainApplication;
 import com.yyin.testfx.controllers.content.LyricContentController;
+import com.yyin.testfx.utils.ImageUtils;
 import com.yyin.testfx.utils.UIUtuils;
 import com.yyin.testfx.utils.WindowUtils;
 import javafx.animation.Animation;
@@ -9,7 +10,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -28,7 +28,7 @@ public class MusicMainApplication extends Application{
         scene.setFill(Color.TRANSPARENT);
         scene.getStylesheets().add(MainApplication.class.getResource("css/ContextMenuStyle.css").toExternalForm());  //添加contextmenu的样式
         primaryStage.setTitle("音乐"); // 设置标题
-        primaryStage.getIcons().add(new Image(MainApplication.class.getResource("img/NeteaseMusicPlayerIcon.png").toString())); //设置图标
+        primaryStage.getIcons().add(ImageUtils.getImage("NeteaseMusicPlayerIcon.png")); //设置图标
         primaryStage.setScene(scene);
         UIUtuils.transparentStyle(root,primaryStage);
         addMinMaxsizeBehavior(primaryStage);

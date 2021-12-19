@@ -18,6 +18,10 @@ module com.yyin.testfx {
     requires java.desktop;
     requires jna.platform;
     requires jna;
+    requires javafx.media;
+    requires jaudiotagger;
+    requires lombok;
+    requires javax.annotation;
 
     opens com.yyin.testfx to javafx.fxml;
     exports com.yyin.testfx.controllers;
@@ -27,5 +31,6 @@ module com.yyin.testfx {
     exports com.yyin.testfx;
     exports com.yyin.testfx.dao.in;
     exports com.yyin.testfx.dao;
-    exports controller.main;
+    exports com.yyin.testfx.controllers.main;
+    opens com.yyin.testfx.controllers.main to javafx.fxml;
 }

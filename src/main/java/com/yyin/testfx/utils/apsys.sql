@@ -15,3 +15,5 @@ select * from t_user;
 update t_user
 set password =123527123
 where email="1398035515@qq.com";
+
+INSERT INTO t_song(`id`,`song_name`,`singer`,`album_name`,`song_time`,`resource`,`lyric`,`cover_url`)VALUES(?,?,?,?,?,?,?,?);

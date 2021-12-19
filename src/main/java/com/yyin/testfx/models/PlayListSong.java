@@ -12,6 +12,13 @@ public class PlayListSong {
     private int id;     //歌曲id
     private String name;    //歌曲名
     private String singer;  //歌手
+    private String album;   //专辑名
+    private String totalTime;   //总时长
+    private String resource;    //资源路径
+    private String lyric;    //歌词
+    private String imageURL;    //封面路径
+    private Label labRemoveIcon;
+
 
     public int getId() {
         return id;
@@ -20,13 +27,6 @@ public class PlayListSong {
     public void setId(int id) {
         this.id = id;
     }
-
-    private String album;   //专辑名
-    private String totalTime;   //总时长
-    private String resource;    //资源路径
-    private String lyricURL;    //歌词路径
-    private String imageURL;    //封面路径
-    private Label labRemoveIcon;
 
     public String getName() {
         return name;
@@ -76,12 +76,12 @@ public class PlayListSong {
         this.resource = resource;
     }
 
-    public String getLyricURL() {
-        return lyricURL;
+    public String getLyric() {
+        return lyric;
     }
 
-    public void setLyricURL(String lyricURL) {
-        this.lyricURL = lyricURL;
+    public void setLyric(String lyric) {
+        this.lyric = lyric;
     }
 
     public String getImageURL() {
@@ -92,17 +92,19 @@ public class PlayListSong {
         this.imageURL = imageURL;
     }
 
-    public PlayListSong(String name, String singer, String album, String totalTime, String resource, String lyricURL, String imageURL) {
+    public PlayListSong(int id,String name, String singer, String album, String totalTime, String resource, String lyric, String imageURL) {
+        this.id = id;
         this.name = name;
         this.singer = singer;
         this.album = album;
         this.totalTime = totalTime;
         this.resource = resource;
-        this.lyricURL = lyricURL;
+        this.lyric = lyric;
         this.imageURL = imageURL;
     }
 
-    public PlayListSong(String name, String singer, String album, String totalTime, String resource) {
+    public PlayListSong(int id,String name, String singer, String album, String totalTime, String resource) {
+        this.id = id;
         this.name = name;
         this.singer = singer;
         this.album = album;

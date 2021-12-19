@@ -1,14 +1,18 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import javazoom.jl.decoder.Bitstream;
+import javazoom.jl.decoder.BitstreamException;
+import javazoom.jl.decoder.Header;
 import org.junit.Test;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * @Author: YinZhihao
@@ -34,5 +38,23 @@ public class TestSpider {
         String pretty = JSON.toJSONString(object, SerializerFeature.PrettyFormat,SerializerFeature.WriteMapNullValue,SerializerFeature.WriteDateUseDateFormat);
 
         System.out.println(pretty);
+    }
+    @Test
+    public void GetTotalTime() throws LineUnavailableException, IOException, UnsupportedAudioFileException, BitstreamException {
+        URL url = new URL("http://music.163.com/song/media/outer/url?id=1455101010.mp3");
+        URLConnection con = url.openConnection();
+        int b = con.getContentLength();// 得到音乐文件的总长度
+
+        BufferedInputStream bis = new BufferedInputStream(con.getInputStream());
+
+        Bitstream bt = new Bitstream(bis);
+
+        Header h = bt.readFrame();
+
+        int time = (int) h.total_ms(b);
+
+        System.out.println(time / 1000);
+
+
     }
 }

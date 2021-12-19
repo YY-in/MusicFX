@@ -30,7 +30,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.badlogicgames.jlayer</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.2-gdx</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>

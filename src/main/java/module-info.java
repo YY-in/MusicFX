@@ -22,6 +22,8 @@ module com.yyin.testfx {
     requires jaudiotagger;
     requires lombok;
     requires javax.annotation;
+    requires fastjson;
+    requires jlayer;
 
     opens com.yyin.testfx to javafx.fxml;
     exports com.yyin.testfx.controllers;

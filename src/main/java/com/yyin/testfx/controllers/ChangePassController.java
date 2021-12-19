@@ -5,7 +5,7 @@ import com.yyin.testfx.MainApplication;
 import com.yyin.testfx.dao.UserDaoImpl;
 import com.yyin.testfx.dao.in.UserDao;
 import com.yyin.testfx.service.UserService;
-import com.yyin.testfx.service.UserServiceImpl;
+import com.yyin.testfx.service.impl.UserServiceImpl;
 import com.yyin.testfx.utils.EmailUtils;
 import com.yyin.testfx.utils.UIUtuils;
 import javafx.application.Application;

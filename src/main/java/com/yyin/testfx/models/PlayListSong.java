@@ -15,7 +15,7 @@ public class PlayListSong {
     private String album;   //专辑名
     private String totalTime;   //总时长
     private String resource;    //资源路径
-    private String lyric;    //歌词
+    private String lyricURL;    //歌词
     private String imageURL;    //封面路径
     private Label labRemoveIcon;
 
@@ -77,11 +77,11 @@ public class PlayListSong {
     }
 
     public String getLyric() {
-        return lyric;
+        return lyricURL;
     }
 
-    public void setLyric(String lyric) {
-        this.lyric = lyric;
+    public void setLyric(String lyricURL) {
+        this.lyricURL = lyricURL;
     }
 
     public String getImageURL() {
@@ -92,14 +92,14 @@ public class PlayListSong {
         this.imageURL = imageURL;
     }
 
-    public PlayListSong(int id,String name, String singer, String album, String totalTime, String resource, String lyric, String imageURL) {
+    public PlayListSong(int id,String name, String singer, String album, String totalTime, String resource, String lyricURL, String imageURL) {
         this.id = id;
         this.name = name;
         this.singer = singer;
         this.album = album;
         this.totalTime = totalTime;
         this.resource = resource;
-        this.lyric = lyric;
+        this.lyricURL = lyricURL;
         this.imageURL = imageURL;
     }
 

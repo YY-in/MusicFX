@@ -1,8 +1,9 @@
-package com.yyin.testfx.service;
+package com.yyin.testfx.service.impl;
 
 import com.yyin.testfx.dao.UserDaoImpl;
 import com.yyin.testfx.dao.in.UserDao;
 import com.yyin.testfx.models.User;
+import com.yyin.testfx.service.UserService;
 
 import java.util.regex.Pattern;
 
@@ -11,7 +12,7 @@ import java.util.regex.Pattern;
  * @Description:
  * @Date: Created in 22:24 2021/12/9
  */
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private UserDao userDao = new UserDaoImpl();
 
     @Override

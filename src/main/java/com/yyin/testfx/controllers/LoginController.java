@@ -3,7 +3,7 @@ package com.yyin.testfx.controllers;
 import com.yyin.testfx.application.MusicMainApplication;
 import com.yyin.testfx.models.User;
 import com.yyin.testfx.service.UserService;
-import com.yyin.testfx.service.UserServiceImpl;
+import com.yyin.testfx.service.impl.UserServiceImpl;
 import com.yyin.testfx.utils.JdbcUtils;
 import com.yyin.testfx.utils.UIUtuils;
 import javafx.application.Platform;

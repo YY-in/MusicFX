@@ -1,4 +1,5 @@
 import com.alibaba.fastjson.JSONObject;
+import com.yyin.testfx.mediaplayer.Config;
 import com.yyin.testfx.utils.JDKSpider;
 import com.yyin.testfx.utils.SongUtils;
 import javazoom.jl.decoder.BitstreamException;
@@ -25,5 +26,15 @@ public class TestSpider {
     public void GetTotalTime() throws LineUnavailableException, IOException, UnsupportedAudioFileException, BitstreamException {
         int time =SongUtils.getSongPlayTimeByWeb("http://music.163.com/song/media/outer/url?id=1455101010.mp3");
         System.out.println(time);
+    }
+    @Test
+    public void testConfig() throws IOException {
+        Config config = new Config();
+        System.out.println(config.getSongURL(2131213));
+
+        System.out.println(config.getSingerURL(11972054));
+        System.out.println(config.getAlbumURL(35046112));
+        System.out.println(config.getUserURL(246437214));
+        System.out.println(config.getGroupURL(307039766));
     }
 }

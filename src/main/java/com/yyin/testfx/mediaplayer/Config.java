@@ -1,7 +1,6 @@
 package com.yyin.testfx.mediaplayer;
 
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-/**
+/*
  * @author super lollipop
  * @date 20-2-11
  */
@@ -21,26 +20,26 @@ public class Config {
     /**播放器配置文件的存放路径*/
     private Path configPath;
 
-    private String server;
+    private String server= "http://api.yyin.top:3000";
 
-    public String getSongURL() {
-        return server + "/song";
+    public String getSongURL(int mid) {
+        return String.format("https://api.paugram.com/netease/?id=",mid);
     }
 
-    public String getSingerURL(){
-        return server + "/singer";
+    public String getSingerURL(int sid){
+        return server + "/artist/detail?id="+ sid;
     }
 
-    public String getAlbumURL(){
-        return server + "/album";
+    public String getAlbumURL(int aid){
+        return server + "/album?id="+aid;
     }
 
-    public String getUserURL(){
-        return server + "/user";
+    public String getUserURL(int uid){
+        return server + "/user/detail?uid=" + uid;
     }
 
-    public String getGroupURL(){
-        return server + "/group";
+    public String getGroupURL(int pid){
+        return server + "/playlist/detail?id=" + pid;
     }
 
     public String getGroupSongURL(){

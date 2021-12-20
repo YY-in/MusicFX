@@ -17,25 +17,25 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
     @Override
     public User queryUserByUserName(String userName) {
-        String sql = "select `id`,`username`,`password`,`email`,`user_img` from t_user where username = ?";
+        String sql = "select `uid`,`username`,`password`,`email`,`user_img` from t_user where username = ?";
         return queryForOne(User.class, sql, userName);
     }
 
     @Override
     public User queryUserByUsernameAndPassword(String userName, String password) {
-        String sql = "select `id`,`username`,`password`,`email` from t_user where username = ? and password = ?";
+        String sql = "select `uid`,`username`,`password`,`email` from t_user where username = ? and password = ?";
         return queryForOne(User.class, sql, userName,password);
     }
 
     @Override
     public User queryUserEmail(String email) {
-        String sql = "select `id`,`username`,`password`,`email` from t_user where email = ?";
+        String sql = "select `uid`,`username`,`password`,`email` from t_user where email = ?";
         return queryForOne(User.class,sql,email);
     }
 
     @Override
     public User queryUserByEmailAndPassword(String email, String password) {
-        String sql = "select `id`,`username`,`password`,`email` from t_user where email = ? and password = ?";
+        String sql = "select `uid`,`username`,`password`,`email` from t_user where email = ? and password = ?";
         return queryForOne(User.class, sql,email,password);
     }
 

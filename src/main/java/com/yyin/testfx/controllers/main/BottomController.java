@@ -6,10 +6,13 @@ import com.yyin.testfx.mediaplayer.PlayMode;
 import com.yyin.testfx.mediaplayer.PlayerStatus;
 import com.yyin.testfx.models.PlayListSong;
 import com.yyin.testfx.utils.ImageUtils;
+import com.yyin.testfx.utils.TimeUtils;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -158,10 +161,6 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
 
     }
 
-    @FXML
-    void onClickedPlayLast(MouseEvent event) {
-
-    }
 
     @FXML
     void onClickedPlayListIcon(MouseEvent event) {
@@ -172,6 +171,13 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     void onClickedPlayMode(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY){     //鼠标左击才执行
             switchPlayMode();
+        }
+    }
+
+    @FXML
+    void onClickedPlayLast(MouseEvent event) throws TagException, CannotReadException, InvalidAudioFrameException, ReadOnlyFileException, IOException, ParseException {
+        if (event.getButton() == MouseButton.PRIMARY){
+           playLast();
         }
     }
 
@@ -213,6 +219,40 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     private List<Integer> nextPlayIndexList = new LinkedList<>();
 
     private Config config = new Config();
+
+    public MediaPlayer getPlayer() {
+        return mediaPlayer;
+    }
+
+    public List<PlayListSong> getPlayListSongs() {
+        if (playListSongs == null){
+            playListSongs = new LinkedList<>();
+        }
+        return playListSongs;
+    }
+
+    public int getCurrentPlayIndex() {
+        return currentPlayIndex;
+    }
+
+    public PlayListSong getCurrentPlaySong(){
+        return playListSongs.get(currentPlayIndex);
+    }
+
+    public List<Integer> getNextPlayIndexList() {
+        if (nextPlayIndexList == null) {
+            nextPlayIndexList = new LinkedList<>();
+        }
+        return nextPlayIndexList;
+    }
+
+    public void setPlayListSongs(ObservableList<PlayListSong> playListSongs) {
+        this.playListSongs = playListSongs;
+    }
+
+    public void setCurrentPlayIndex(int currentPlayIndex) {
+        this.currentPlayIndex = currentPlayIndex;
+    }
 
 //    private MainController mainController = getMainController();
 //
@@ -278,7 +318,26 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
 
     @Override
     public void prepareGUI() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException {
+        //.播放、暂停"按钮图片
+        labPlay.setGraphic(ImageUtils.createImageView("NeteasePause.png", 32, 32));
+        //歌曲名称、歌手、歌曲总时间
+        labMusicName.setText(getCurrentPlaySong().getName());
+        labMusicSinger.setText(getCurrentPlaySong().getSinger());
+        labTotalTime.setText(getCurrentPlaySong().getTotalTime());
+        //播放进度条设置
+        sliderSong.setValue(0);
+        sliderSong.setMax(TimeUtils.toSeconds(getCurrentPlaySong().getTotalTime()));  //设置歌曲滑动条的最大值为歌曲的秒数
+        //专辑图片
+        if (getCurrentPlaySong().getImageURL() != null){    //如果URL不为空,就是在线资源了.
+            Image image = new Image(getCurrentPlaySong().getImageURL(),58,58,true,true);
+            if (!image.isError()){
+                labAlbum.setGraphic(ImageUtils.createImageView(image,58,58));
+            }else { //无网络时
 
+            }
+        }else { //本地资源加载专辑图
+            labAlbum.setGraphic(ImageUtils.getAlbumImageView(getCurrentPlaySong(),58,58));
+        }
     }
 
     @Override
@@ -288,9 +347,10 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
             this.mediaPlayer = null;
         }
         /**创建MediaPlayer播放*/
-        String resource = config.getSongPlay(1893335808);
-        System.out.println(config.getSongPlay(1893335808));
-//                playListSongs.get(currentPlayIndex).getResource();
+        String resource =
+//                config.getSongPlay(1893335808);
+//        System.out.println(config.getSongPlay(1893335808));
+                playListSongs.get(currentPlayIndex).getResource();
         if (resource.contains("http")){    //如果是在线资源，加载专辑图，并设置显示
             mediaPlayer = new MediaPlayer(new Media(resource)); //创建在线资源的媒体播放器对象
             mediaPlayer.setOnError(()->{
@@ -466,12 +526,15 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     }
 
     public void playAfter() {
-
+        System.out.println("播放结束后处理操作");
     }
 
     @Override
     public void playSong() throws ReadOnlyFileException, CannotReadException, TagException, InvalidAudioFrameException, IOException, ParseException {
-
+        prepareGUI();
+        prepareMediaPlayer();
+        play();   //播放
+        playAfter();
     }
 
     @Override
@@ -485,8 +548,40 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     }
 
     @Override
-    public void playLast() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException {
-
+    public void playLast() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException, ParseException {
+        if (playListSongs.size() == 1) {     //播放列表的歌曲只有一首歌时执行的处理,歌曲回滚处理
+            mediaPlayer.seek(new Duration(0));
+        } else {      //否则播放列表的歌曲大于1，播放下一首歌曲
+            if (nextPlayIndexList.contains(currentPlayIndex)) {
+                nextPlayIndexList.remove((Object) currentPlayIndex);
+            }
+            nextPlayIndexList.add(currentPlayIndex);  //播放上一首歌曲之前，把当前的索引添加到下一次播放的索引列表
+            if (lastPlayIndexList.size() == 0) {    //如果记录上一首播放的歌曲的列表等于0，证明当前没有上一首歌播放
+                if (playMode == PlayMode.SHUFFLE) {   //“随机播放”模式
+                    while (true) {  //直到生成的随机数不是当前播放的索引值，执行播放
+                        int randomIndex = new Random().nextInt(playListSongs.size());
+                        if (randomIndex != currentPlayIndex) {  //如果随机索引值不是当前播放的索引值
+                            currentPlayIndex = randomIndex;       //替换当前的播放索引值,退出循环
+                            break;
+                        }
+                    }
+                } else { //否则，则为“顺序播放”或“单曲循环”或“顺序循环”模式，且在播放列表歌曲大于1的情况下
+                    if (currentPlayIndex == 0) { //如果当前播放歌曲索引为第0位置，设置为播放列表最后的歌曲索引
+                        currentPlayIndex = playListSongs.size() - 1;
+                    } else { //否则，都是当前播放索引+1
+                        currentPlayIndex = currentPlayIndex - 1;
+                    }
+                }
+            } else {       //否则,则lastPlayIndexList的大小大于零,存储有索引,取出记录上一首歌列表里的最后一次添加的那一个歌曲播放
+                int index = lastPlayIndexList.size() - 1;
+                currentPlayIndex = lastPlayIndexList.get(index);
+                lastPlayIndexList.remove(index);
+            }
+            playSong();  //执行播放索引值对应的歌曲
+        }
+//        if (lyricContentController.isShow()){
+//            lyricContentController.loadAlbumLyric();
+//        }
     }
 
     @Override

@@ -28,12 +28,12 @@ public class PlayerStatus {
     /**
      * 播放列表歌曲集合
      * */
-    protected List<PlayListSong> playListSongs = new LinkedList<>();
+    protected List<PlayListSong> playListSongs = testList();
 
     /**
      * 当前播放的歌曲在播放列表中位置索引
      * */
-    protected int currentPlayIndex = -1;
+    protected int currentPlayIndex = 1;
 
     /**
      * 定义播放模式枚举类型,默认为顺序播放
@@ -92,5 +92,20 @@ public class PlayerStatus {
         this.playListSongs = playListSongs;
         this.currentPlayIndex = currentPlayIndex;
         this.playMode = playMode;
+    }
+
+    public List<PlayListSong> testList(){
+        Config config = new Config();
+        List<PlayListSong> playListSongs = new LinkedList<>();
+        playListSongs.add(new PlayListSong(config.getSongPlay(1373172794)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(400876320)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(3597282)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(636176)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(1466691753)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(1861126812)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(26289183)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(1844006141)));
+        playListSongs.add(new PlayListSong(config.getSongPlay(1370359829)));
+        return  playListSongs;
     }
 }

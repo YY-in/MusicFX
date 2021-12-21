@@ -14,6 +14,11 @@ public class PlayListSong {
     private String singer;  //歌手
     private String album;   //专辑名
     private String totalTime;   //总时长
+
+    public PlayListSong(String resource) {
+        this.resource = resource;
+    }
+
     private String resource;    //资源路径
     private String lyricURL;    //歌词
     private String imageURL;    //封面路径

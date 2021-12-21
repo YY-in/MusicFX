@@ -31,10 +31,10 @@ public class TestSpider {
     public void testConfig() throws IOException {
         Config config = new Config();
         System.out.println(config.getSongURL(2131213));
-
         System.out.println(config.getSingerURL(11972054));
         System.out.println(config.getAlbumURL(35046112));
         System.out.println(config.getUserURL(246437214));
         System.out.println(config.getGroupURL(307039766));
+        System.out.println(config.getSongDetailURL(123342,4353456,34575647,5465467));
     }
 }

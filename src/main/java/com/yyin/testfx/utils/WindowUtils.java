@@ -319,4 +319,5 @@ public final class WindowUtils {
         needBindRegion.maxWidthProperty().bind(bindRegion.widthProperty());
         needBindRegion.maxHeightProperty().bind(bindRegion.heightProperty());
     }
+
 }

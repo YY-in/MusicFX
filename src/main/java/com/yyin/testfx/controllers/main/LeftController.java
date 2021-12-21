@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
  * @Date: Created in 22:27 2021/12/13
  */
 public class LeftController {
+
     public void onClickedSearchTab(MouseEvent mouseEvent) {
     }
 

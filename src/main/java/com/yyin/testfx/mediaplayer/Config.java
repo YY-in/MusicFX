@@ -1,14 +1,7 @@
 package com.yyin.testfx.mediaplayer;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Properties;
 
 /*
  * @author super lollipop
@@ -22,8 +15,12 @@ public class Config {
 
     private String server= "http://api.yyin.top:3000";
 
+    public String getSongPlay(int mid){
+        return  "http://music.163.com/song/media/outer/url?id="+mid;
+    }
+
     public String getSongURL(int mid) {
-        return String.format("https://api.paugram.com/netease/?id=",mid);
+        return "https://api.paugram.com/netease/?id="+mid;
     }
 
     public String getSingerURL(int sid){
@@ -42,76 +39,19 @@ public class Config {
         return server + "/playlist/detail?id=" + pid;
     }
 
-    public String getGroupSongURL(){
-        return server + "/groupSong";
+    public String getSongDetailURL(int mid){
+        return server + "/song/detail?id="+mid;
     }
 
-    /**获取登录配置存储的文件句柄*/
-    public File getUserStatusFile() {
-        return configPath.resolve("user-status.properties").toFile();
-    }
-
-    /**获取选择的目录存储的文件句柄*/
-    public File getChoseFolderConfigFile(){
-        return configPath.resolve("chose-folder.xml").toFile();
-    }
-
-    /**获取最近播放记录文件句柄*/
-    public File getRecentPlayFile(){
-        return configPath.resolve("recent-play.xml").toFile();
-    }
-
-    public File getPlayerStatusFile(){
-        return configPath.resolve("player-state.properties").toFile();
-    }
-
-    public File getSearchHistoryFile(){
-        return configPath.resolve("search-history.xml").toFile();
-    }
-
-    public File getGroupsSongFile(){
-        return configPath.resolve("groups-song.xml").toFile();
-    }
-
-    public Path getCachePath() throws IOException {
-        Path cachePath;
-        if (!configPath.resolve("cache").toFile().exists()){
-            cachePath = Files.createDirectories(configPath.resolve("cache"));
-        }else {
-            cachePath = configPath.resolve("cache");
+    public String getSongDetailURL(int ... args){
+        StringBuffer song = new StringBuffer();
+        song.append(args[0]);
+        for (int i = 1; i < args.length; i++) {
+            song.append(","+args[i]);
         }
-        return cachePath;
-    }
-
-    public Path getLyricPath() throws IOException {
-        Path lyricPath;
-        if (!configPath.resolve("lyric").toFile().exists()){
-            lyricPath = Files.createDirectories(configPath.resolve("lyric"));
-        }else {
-            lyricPath = configPath.resolve("lyric");
-        }
-        return lyricPath;
+        return server + "/song/detail?ids="+song;
     }
 
 
-    public Config() throws IOException {
-        /**server part*/
-        BufferedReader in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("config/server-config.properties")));
-        Properties properties = new Properties();
-        properties.load(in);
-        server = properties.getProperty("server");
-
-        /**local config part*/
-        Path configParent;
-        Path configDir;
-        String appData = System.getenv("APPDATA");
-        if (appData != null) {
-            configParent = Paths.get(appData);
-        } else {
-            configParent = Paths.get(System.getProperty("user.home"));
-        }
-        configDir = configParent.resolve("neteasemusicplayer");
-        configPath = Files.createDirectories(configDir);
-    }
 
 }

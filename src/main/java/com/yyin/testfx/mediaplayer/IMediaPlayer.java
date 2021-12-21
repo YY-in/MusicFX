@@ -17,11 +17,11 @@ import java.util.List;
  * @Date: Created in 8:43 2021/12/17
  */
 public interface IMediaPlayer {
-    void play();
+    void  play();
     void pause();
     void prepareGUI() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;
     void prepareMediaPlayer();
-    void playOrPause() throws IOException;
+    boolean playOrPause() throws IOException;
     void playSong() throws ReadOnlyFileException, CannotReadException, TagException, InvalidAudioFrameException, IOException, ParseException;
     void playAll(List tableItems) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;
     void playAll(List tableItems,int index) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;

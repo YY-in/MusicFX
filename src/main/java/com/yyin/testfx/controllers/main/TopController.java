@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 public class TopController {
 
+
     /**
      * 标题栏的最小化图片组件
      */
@@ -34,7 +35,6 @@ public class TopController {
     @FXML
     private BorderPane titleBar;  //包裹标题文字和最小化、最大化、关闭/退出按钮的BorderPane
 
-    private MainController mainController;
 
     public void initialize() {
         ivMinimize.setCursor(Cursor.DEFAULT);

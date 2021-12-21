@@ -1,15 +1,19 @@
 package com.yyin.testfx.controllers.main;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * @Author: YinZhihao
  * @Description:
  * @Date: Created in 15:30 2021/12/16
  */
-public class MainController {
+public class MainController implements Initializable {
 
     /**根容器stackPane*/
     @FXML
@@ -27,11 +31,9 @@ public class MainController {
         return stackPane;
     }
 
-//    public void initialize() throws IOException {
-//        if (WindowUtils.isWindowsPlatform()){   //如果是windows平台,加载自定义设计的标题栏、添加阴影效果
-//            FXMLLoader fxmlLoader = applicationContext.getBean(SpringFXMLLoader.class).getLoader("/fxml/main/main-top.fxml");
-//            borderPane.setTop(fxmlLoader.load());
-//            borderPane.getStyleClass().add("borderPaneDefault");
-//        }
-//    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

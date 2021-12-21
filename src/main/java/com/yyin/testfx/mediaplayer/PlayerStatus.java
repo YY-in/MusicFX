@@ -1,9 +1,12 @@
 package com.yyin.testfx.mediaplayer;
 
 import com.yyin.testfx.models.PlayListSong;
+import com.yyin.testfx.utils.SongUtils;
+import javazoom.jl.decoder.BitstreamException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,7 +31,17 @@ public class PlayerStatus {
     /**
      * 播放列表歌曲集合
      * */
-    protected List<PlayListSong> playListSongs = testList();
+    protected List<PlayListSong> playListSongs;
+
+    {
+        try {
+            playListSongs = testList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (BitstreamException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 当前播放的歌曲在播放列表中位置索引
@@ -81,7 +94,7 @@ public class PlayerStatus {
     }
 
 
-    public PlayerStatus(double volume, boolean mute, List<PlayListSong> playListSongs, int currentPlayIndex, PlayMode playMode) {
+    public PlayerStatus(double volume, boolean mute, List<PlayListSong> playListSongs, int currentPlayIndex, PlayMode playMode) throws IOException, BitstreamException {
         this.volume = volume;
         this.mute = mute;
         for (int i = 0; i < playListSongs.size(); i++) {
@@ -94,18 +107,13 @@ public class PlayerStatus {
         this.playMode = playMode;
     }
 
-    public List<PlayListSong> testList(){
+    public List<PlayListSong> testList() throws IOException, BitstreamException {
         Config config = new Config();
         List<PlayListSong> playListSongs = new LinkedList<>();
-        playListSongs.add(new PlayListSong(config.getSongPlay(1373172794)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(400876320)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(3597282)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(636176)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(1466691753)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(1861126812)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(26289183)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(1844006141)));
-        playListSongs.add(new PlayListSong(config.getSongPlay(1370359829)));
+        playListSongs.add(SongUtils.createPlayListSong(1373172794));
+        playListSongs.add(SongUtils.createPlayListSong(400876320));
+        playListSongs.add(SongUtils.createPlayListSong(3597282));
+
         return  playListSongs;
     }
 }

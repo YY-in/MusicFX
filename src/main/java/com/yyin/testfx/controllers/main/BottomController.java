@@ -6,7 +6,6 @@ import com.yyin.testfx.mediaplayer.PlayMode;
 import com.yyin.testfx.mediaplayer.PlayerStatus;
 import com.yyin.testfx.models.PlayListSong;
 import com.yyin.testfx.utils.ImageUtils;
-import com.yyin.testfx.utils.TimeUtils;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -295,6 +294,8 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
 //        return null;
 //    }
 
+
+
     @Override
     public void play() {
         mediaPlayer.play();
@@ -326,7 +327,7 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
         labTotalTime.setText(getCurrentPlaySong().getTotalTime());
         //播放进度条设置
         sliderSong.setValue(0);
-        sliderSong.setMax(TimeUtils.toSeconds(getCurrentPlaySong().getTotalTime()));  //设置歌曲滑动条的最大值为歌曲的秒数
+        sliderSong.setMax(Double.parseDouble(getCurrentPlaySong().getTotalTime()));  //设置歌曲滑动条的最大值为歌曲的秒数
         //专辑图片
         if (getCurrentPlaySong().getImageURL() != null){    //如果URL不为空,就是在线资源了.
             Image image = new Image(getCurrentPlaySong().getImageURL(),58,58,true,true);
@@ -347,10 +348,10 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
             this.mediaPlayer = null;
         }
         /**创建MediaPlayer播放*/
-        String resource =
-//                config.getSongPlay(1893335808);
+        String resource = playListSongs.get(currentPlayIndex).getResource();
+                config.getSongPlay(1893335808);
 //        System.out.println(config.getSongPlay(1893335808));
-                playListSongs.get(currentPlayIndex).getResource();
+        System.out.println(resource);
         if (resource.contains("http")){    //如果是在线资源，加载专辑图，并设置显示
             mediaPlayer = new MediaPlayer(new Media(resource)); //创建在线资源的媒体播放器对象
             mediaPlayer.setOnError(()->{

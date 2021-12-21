@@ -1,16 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-    <center>
 
-        <Label text="发现音乐"></Label>
-    </center>
-</BorderPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" text="个性推荐" underline="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" text="专属定制" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" text="歌单" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" text="排行榜" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" text="歌手" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="66.0" text="最新音乐" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="172.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ImageView fitHeight="110.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/左边.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="124.0" fitWidth="379.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/hengping.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="110.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/右边.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox prefHeight="25.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label prefHeight="28.0" prefWidth="31.0" />
+            <Label prefHeight="39.0" prefWidth="110.0" text="推荐歌单&gt; ">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="117.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ImageView fx:id="imgA" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/AlbumOutdoor.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgB" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/AlbumOutdoor.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgC" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/AlbumOutdoor.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgD" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/AlbumOutdoor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="52.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="歌单1" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="歌单2" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="歌单3" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="歌单4" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

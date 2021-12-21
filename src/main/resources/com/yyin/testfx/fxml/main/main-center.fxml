@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-           fx:id="stackPane"
-            fx:controller="com.yyin.testfx.controllers.main.CenterController">
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yyin.testfx.controllers.main.CenterController">
 
     <BorderPane fx:id="borderPane" style="-fx-background-color: #FAFAFC;">
         <left>
-            <fx:include source="main-left.fxml"></fx:include>
+            <fx:include source="main-left.fxml" />
         </left>
         <center>
             <!--set default center.just use include-->
-            <fx:include source="../content/tab-exploremusic-content.fxml"></fx:include>
+            <fx:include source="../content/tab-exploremusic-content.fxml" />
         </center>
     </BorderPane>
 </StackPane>

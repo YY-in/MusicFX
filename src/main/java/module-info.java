@@ -35,5 +35,6 @@ module com.yyin.testfx {
     exports com.yyin.testfx.dao;
     exports com.yyin.testfx.controllers.main;
     opens com.yyin.testfx.controllers.main to javafx.fxml;
-    exports com.yyin.testfx.mediaplayer;
+    exports com.yyin.testfx.controllers.content;
+    opens com.yyin.testfx.controllers.content to javafx.fxml;
 }

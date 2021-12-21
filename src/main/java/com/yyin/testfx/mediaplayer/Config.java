@@ -52,6 +52,10 @@ public class Config {
         return server + "/song/detail?ids="+song;
     }
 
+    public String getLyric(int mid){
+        return server + "/lyric?id=" + mid;
+    }
+
 
 
 }

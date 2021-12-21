@@ -22,5 +22,6 @@ public class LeftController {
     }
 
     public void onClickedHBoxUserInfo(MouseEvent mouseEvent) {
+
     }
 }

@@ -26,7 +26,7 @@ public class SongDaoImpl extends BaseDao implements SongDao {
 
     @Override
     public int saveSong(PlayListSong song) {
-        String sql = "INSERT INTO t_song(`mid`,`song_name`,`singer`,`album_name`,`song_time`,`resource`,`lyric`,`cover_url`)VALUES(?,?,?,?,?,?,?,?)";
-        return update(sql, song.getId(),song.getName(),song.getSinger(),song.getAlbum(),song.getTotalTime(),song.getResource(),song.getLyric(),song.getImageURL());
+        String sql = "INSERT INTO t_music(`mid`,`title`,`singer_name`,`album_name`,`song_time`,`cover`,`lyric`,`link`)VALUES(?,?,?,?,?,?,?,?)";
+        return update(sql, song.getId(),song.getName(),song.getSinger(),song.getAlbum(),song.getTotalTime(),song.getImageURL(),song.getLyric(),song.getResource());
     }
 }

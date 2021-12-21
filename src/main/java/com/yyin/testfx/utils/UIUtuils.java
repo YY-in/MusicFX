@@ -17,6 +17,7 @@ public class UIUtuils {
     public static double xOffset = 0;
     public static double yOffset = 0;
 
+
     public static void labelError(Label labelErrors, Color color, String text) {
         labelErrors.setTextFill(color);
         labelErrors.setText(text);
@@ -43,5 +44,8 @@ public class UIUtuils {
             }
         });
     }
+
+
+
 
 }

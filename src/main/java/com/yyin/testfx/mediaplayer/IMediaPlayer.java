@@ -26,8 +26,8 @@ public interface IMediaPlayer {
     void playAll(List tableItems) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;
     void playAll(List tableItems,int index) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;
     void playLast() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException, ParseException;
-    void playNext() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;
-    void addToPlayList(PlayListSong playListSong) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException;
+    void playNext() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException, ParseException;
+    void addToPlayList(PlayListSong playListSong) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException, ParseException;
     void removeFromPlayList(int index) throws ReadOnlyFileException, IOException, TagException, InvalidAudioFrameException, CannotReadException;
     void addFavor();
     void destroy();

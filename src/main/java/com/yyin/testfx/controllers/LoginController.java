@@ -132,7 +132,7 @@ public class LoginController implements Initializable {
                                         Stage primaryStage = (Stage) btnForgot.getScene().getWindow();
                                         //当前窗口隐藏
 
-                                        //加载forgetPass窗口
+                                        //加载主页面窗口
                                         try {
                                                 new MusicMainApplication().start(primaryStage);
                                         } catch (Exception e) {

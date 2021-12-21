@@ -5,7 +5,6 @@ import com.yyin.testfx.controllers.content.LyricContentController;
 import com.yyin.testfx.utils.ImageUtils;
 import com.yyin.testfx.utils.UIUtuils;
 import com.yyin.testfx.utils.WindowUtils;
-import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,11 +46,11 @@ public class MusicMainApplication extends Application{
             LyricContentController lyricContentController = new LyricContentController();
             if (observable.getValue()){
                 System.out.println("cancel");
-                /**#####RotateTransition######*/
-                if (lyricContentController.isShow() && lyricContentController.getRotateTransition().getStatus() == Animation.Status.RUNNING){
-                    lyricContentController.getRotateTransition().pause();
-                }
-            }else {
+//                /**#####RotateTransition######*/
+//                if (lyricContentController.isShow() && lyricContentController.getRotateTransition().getStatus() == Animation.Status.RUNNING){
+//                    lyricContentController.getRotateTransition().pause();
+//                }
+//            }else {
 //                /**#####RotateTransition######*/
 //                if (lyricContentController.isShow()
 //                        //TODO

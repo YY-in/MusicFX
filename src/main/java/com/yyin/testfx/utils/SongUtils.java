@@ -54,7 +54,7 @@ public class SongUtils {
         String album = object.get("album").toString();
         String totalTime = "" + getSongPlayTimeByWeb(mid);
         String resource = config.getSongPlay(mid);
-        String lyricURL = object.get("lyric").toString();
+        String lyricURL = config.getLyric(mid);
         String cover =object.get("cover").toString();
 //        System.out.println(cover);
         //int id,String name, String singer, String album, String totalTime, String resource, String , String imageURL

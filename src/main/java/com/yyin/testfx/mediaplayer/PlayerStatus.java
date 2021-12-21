@@ -21,7 +21,7 @@ public class PlayerStatus {
     /**
      * 播放器音量
      * */
-    protected double volume = 0.25;
+    protected double volume = 4;
 
     /**
      * 是否静音
@@ -33,15 +33,15 @@ public class PlayerStatus {
      * */
     protected List<PlayListSong> playListSongs;
 
-    {
-        try {
-            playListSongs = testList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (BitstreamException e) {
-            e.printStackTrace();
-        }
-    }
+//    {
+//        try {
+//            playListSongs = testList();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (BitstreamException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * 当前播放的歌曲在播放列表中位置索引

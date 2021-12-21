@@ -3,23 +3,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="stackPane" stylesheets="@../../css/MainPaneStyle.css"
-           fx:controller="com.yyin.testfx.controllers.main.MainController"
-           minWidth="870.0" minHeight="560.0"
-           xmlns="http://javafx.com/javafx/8.0.171"
-           xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stackPane" minHeight="560.0" minWidth="870.0" stylesheets="@../../css/MainPaneStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yyin.testfx.controllers.main.MainController">
     <children>
-        <BorderPane fx:id="borderPane" prefHeight="560.0" prefWidth="870.0">
+        <BorderPane fx:id="borderPane" prefHeight="560.0" prefWidth="870.0" >
             <top>
-                <fx:include source="main-top.fxml"></fx:include>
+                <fx:include source="main-top.fxml" />
             </top>
 
             <center>
-                <fx:include source="main-center.fxml" />
+                <fx:include fx:id="left" source="main-center.fxml" />
             </center>
 
             <bottom>
-                <fx:include source="main-bottom.fxml" />
+                <fx:include fx:id="bottom" source="main-bottom.fxml" />
             </bottom>
         </BorderPane>
     </children>

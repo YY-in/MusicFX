@@ -1,11 +1,16 @@
 package com.yyin.testfx.controllers.main;
 
+import com.yyin.testfx.controllers.content.LyricContentController;
 import com.yyin.testfx.mediaplayer.Config;
 import com.yyin.testfx.mediaplayer.IMediaPlayer;
 import com.yyin.testfx.mediaplayer.PlayMode;
 import com.yyin.testfx.mediaplayer.PlayerStatus;
 import com.yyin.testfx.models.PlayListSong;
+import com.yyin.testfx.service.SongService;
+import com.yyin.testfx.service.impl.SongServiceImpl;
 import com.yyin.testfx.utils.ImageUtils;
+import com.yyin.testfx.utils.TimeUtils;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,7 +25,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import javazoom.jl.decoder.BitstreamException;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
@@ -65,7 +72,6 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     @FXML
     private Label labPlayListCount;
 
-
     @FXML
     private Label labPlayModeIcon;
 
@@ -96,31 +102,11 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     @FXML
     private Slider sliderVolume;
 
-    public Label getLabPlay() {
-        return labPlay;
-    }
+    private SongService songService = new SongServiceImpl();
 
-    public void setLabPlay(Label labPlay) {
-        this.labPlay = labPlay;
-    }
 
-    public Slider getSliderSong() {
-        return sliderSong;
-    }
+    public void initialize() throws IOException, BitstreamException {
 
-    public void setSliderSong(Slider sliderSong) {
-        this.sliderSong = sliderSong;
-    }
-
-    public Slider getSliderVolume() {
-        return sliderVolume;
-    }
-
-    public void setSliderVolume(Slider sliderVolume) {
-        this.sliderVolume = sliderVolume;
-    }
-
-    public void initialize(){
         progressBarSong.prefWidthProperty().bind(((StackPane)progressBarSong.getParent()).widthProperty());  //宽度绑定
         sliderSong.prefWidthProperty().bind(((StackPane)sliderSong.getParent()).widthProperty());            //宽度绑定
         //设置播放进度滑动条的监听事件，使进度条始终跟随滚动条更新
@@ -156,15 +142,28 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
 
 
     @FXML
-    void onClickedAlbum(MouseEvent event) {
+    void onClickedAlbum(MouseEvent event) throws IOException, TagException, CannotReadException, InvalidAudioFrameException, ReadOnlyFileException {
+        Platform.runLater(() -> {
+            //获取按钮所在的窗口
+            Stage primaryStage = (Stage) bottomPane.getScene().getWindow();
+            //当前窗口隐藏
 
+            //加载主页面窗口
+            try {
+                new LyricContentController().start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 
     @FXML
-    void onClickedPlayListIcon(MouseEvent event) {
-
+    void onClickedPlayListIcon(MouseEvent event) throws IOException, BitstreamException {
+        setPlayListSongs(testList());
     }
+
+
 
     @FXML
     void onClickedPlayMode(MouseEvent event) {
@@ -181,8 +180,11 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     }
 
     @FXML
-    void onClickedPlayNext(MouseEvent event) {
-
+    void onClickedPlayNext(MouseEvent event) throws TagException, CannotReadException, InvalidAudioFrameException, ReadOnlyFileException, IOException, ParseException {
+        /**播放下一首单击事件处理*/
+            if (event.getButton() == MouseButton.PRIMARY){
+                playNext();
+            }
     }
 
     @FXML
@@ -299,7 +301,7 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     @Override
     public void play() {
         mediaPlayer.play();
-        getLabPlay().setGraphic(ImageUtils.createImageView("NeteasePlaying.png", 32, 32));  //"播放、暂停"按钮图片
+        labPlay.setGraphic(ImageUtils.createImageView("NeteasePlaying.png", 32, 32));  //"播放、暂停"按钮图片
 //        if (lyricContentController.isShow()
 //                && lyricContentController.getRotateTransition().getStatus() != Animation.Status.RUNNING){
 //            lyricContentController.getRotateTransition().play();
@@ -324,7 +326,7 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
         //歌曲名称、歌手、歌曲总时间
         labMusicName.setText(getCurrentPlaySong().getName());
         labMusicSinger.setText(getCurrentPlaySong().getSinger());
-        labTotalTime.setText(getCurrentPlaySong().getTotalTime());
+        labTotalTime.setText(TimeUtils.toString(Integer.parseInt(getCurrentPlaySong().getTotalTime())));
         //播放进度条设置
         sliderSong.setValue(0);
         sliderSong.setMax(Double.parseDouble(getCurrentPlaySong().getTotalTime()));  //设置歌曲滑动条的最大值为歌曲的秒数
@@ -349,7 +351,7 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
         }
         /**创建MediaPlayer播放*/
         String resource = playListSongs.get(currentPlayIndex).getResource();
-                config.getSongPlay(1893335808);
+//                config.getSongPlay(1893335808);
 //        System.out.println(config.getSongPlay(1893335808));
         System.out.println(resource);
         if (resource.contains("http")){    //如果是在线资源，加载专辑图，并设置显示
@@ -586,13 +588,71 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     }
 
     @Override
-    public void playNext() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException {
-
+    public void playNext() throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException, ParseException {
+        if (playListSongs.size() == 1) {     //播放列表的歌曲只有一首歌时执行的处理
+            mediaPlayer.seek(new Duration(0));
+        } else {      //否则播放列表的歌曲大于1，播放下一首歌曲
+            if (lastPlayIndexList.contains(currentPlayIndex)) {
+                lastPlayIndexList.remove((Object) currentPlayIndex);
+            }
+            lastPlayIndexList.add(currentPlayIndex);  //播放下一首歌曲之前，把当前的索引添加到上一次播放的索引列表
+            if (nextPlayIndexList.size() == 0) {    //如果记录下一首播放的歌曲的列表小于0，证明当前没有下一首歌播放
+                if (playMode == PlayMode.SHUFFLE) {   //“随机播放”模式
+                    while (true) {  //直到生成的随机数不是当前播放的索引值，执行播放
+                        int randomIndex = new Random().nextInt(playListSongs.size());
+                        if (randomIndex != currentPlayIndex) {  //如果随机索引值不是当前播放的索引值
+                            currentPlayIndex = randomIndex;       //替换当前的播放索引值,退出循环
+                            break;
+                        }
+                    }
+                } else { //否则，则为“顺序播放”或“单曲循环”或“顺序循环”模式，且在播放列表歌曲大于1的情况下
+                    if (currentPlayIndex == playListSongs.size() - 1) { //如果当前播放歌曲索引为第0位置，设置为播放列表最后的歌曲索引
+                        currentPlayIndex = 0;
+                    } else { //否则，都是当前播放索引+1
+                        currentPlayIndex = currentPlayIndex + 1;
+                    }
+                }
+            } else {       //否则,则nextPlayIndexList的大小大于零,存储有索引,取出记录下一首歌列表里的最后一次添加的那一个歌曲播放
+                int index = nextPlayIndexList.size() - 1;
+                currentPlayIndex = nextPlayIndexList.get(index);
+                nextPlayIndexList.remove(index);
+            }
+            playSong();  //执行播放索引值对应的歌曲
+        }
+//        if (lyricContentController.isShow()){
+//            lyricContentController.loadAlbumLyric();
+//        }
     }
 
     @Override
-    public void addToPlayList(PlayListSong playListSong) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException {
-
+    public void addToPlayList(PlayListSong playListSong) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException, ParseException {
+        if (!playListSongs.contains(playListSong)){  //如果播放列表集合不包含此播放列表歌曲
+            if (playListSongs.size() == 0){ //如果播放列表没有歌曲，直接播放
+                playListSongs.add(playListSong); //添加到播放列表集合中去
+                currentPlayIndex = 0;
+                playSong();
+            }else { //否则，播放列表有歌曲，还需进一步处理
+                playListSongs.add(currentPlayIndex + 1,playListSong); //添加到播放列表集合的当前播放索引后面中去
+                for (int i = 0; i < nextPlayIndexList.size(); i++) {  //播放列表集合增加了歌曲，记录的索引需要更新处理
+                    int indexValue = nextPlayIndexList.get(i);
+                    if ( indexValue > currentPlayIndex){
+                        nextPlayIndexList.remove(i);
+                        nextPlayIndexList.add(i,indexValue + 1);
+                    }
+                }
+                nextPlayIndexList.add(currentPlayIndex+1);    //把这个索引记录下来
+            }
+            labPlayListCount.setText(String.valueOf(playListSongs.size()));   //更新右下角播放列表图标GUI显示信息
+        }else { //否则，播放列表存在这首歌曲
+            int indexValue = playListSongs.indexOf(playListSong);   //获取得到在播放列表中的索引位置
+            if (currentPlayIndex != indexValue){ //如果不是当前播放的索引
+                if (nextPlayIndexList.contains(indexValue)){    //如果
+                    nextPlayIndexList.remove((Object)indexValue);
+                }
+                nextPlayIndexList.add(indexValue);  //执行添加
+            }
+        }
+//        WindowUtils.toastInfo(mainController.getStackPane(),new Label("已添加到播放列表"));
     }
 
     @Override
@@ -646,13 +706,13 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     public void switchMute() {
         if (isMute()){
             setMute(false);
-            getSliderVolume().setValue(volume);
+            sliderVolume.setValue(volume);
             labSoundIcon.setGraphic(ImageUtils.createImageView("NeteaseVolumeIcon.png",20,20));
 
         }else {
             setMute(true);
-            volume = getSliderVolume().getValue(); //存储当前的值
-            getSliderVolume().setValue(0);
+            volume = sliderVolume.getValue(); //存储当前的值
+            sliderVolume.setValue(0);
             labSoundIcon.setGraphic(ImageUtils.createImageView("volumeCross.png",20,20));
         }
     }
@@ -692,4 +752,18 @@ public class BottomController extends PlayerStatus implements IMediaPlayer {
     public boolean isPlayingThis(PlayListSong playListSong) {
         return false;
     }
+
+
+
+    /**显示专辑歌词面板函数*/
+    public void showLyricPane() throws ReadOnlyFileException, IOException, TagException, InvalidAudioFrameException, CannotReadException {
+        System.out.println("展示");
+    }
+
+    /**隐藏专辑歌词面板函数*/
+    public void hideLyricPane(){
+
+    }
+
+
 }

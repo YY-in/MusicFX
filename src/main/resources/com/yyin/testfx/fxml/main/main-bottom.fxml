@@ -96,7 +96,7 @@
             <StackPane>
                 <children>
                     <ProgressBar fx:id="progressBarVolume" progress="0.05" />
-                    <Slider fx:id="sliderVolume" max="1" prefWidth="100" value="0.05" />
+                    <Slider fx:id="sliderVolume" max="1" prefWidth="100" value="1.0" />
                 </children>
             </StackPane>
             <!--播放模式图标-->
